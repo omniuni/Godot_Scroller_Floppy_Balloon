@@ -1,0 +1,260 @@
+[gd_scene load_steps=10 format=3 uid="uid://ds0jps4mqwatn"]
+
+[ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/ui_bar_top.tscn" id="1_56hru"]
+[ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_al584"]
+[ext_resource type="Script" uid="uid://dgeyldqo75nkn" path="res://Scripts/screen_main.gd" id="1_c6q44"]
+[ext_resource type="PackedScene" uid="uid://caong3awgnxiv" path="res://Scenes/item_panel.tscn" id="4_yd3c8"]
+[ext_resource type="PackedScene" uid="uid://bvae13382ehhd" path="res://Scenes/ui_target.tscn" id="5_i8enm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yd3c8"]
+size = Vector2(660, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tonuu"]
+size = Vector2(100, 330)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd3c8"]
+bg_color = Color(0, 0, 0, 0.784314)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8enm"]
+
+[node name="ScreenMainControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_al584")
+script = ExtResource("1_c6q44")
+Ball_Speed = 140
+Ball_Speedup = 8
+Action_Two_Text = "+Ball"
+
+[node name="RigidBodyCeiling" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyCeiling"]
+position = Vector2(320, 20)
+shape = SubResource("RectangleShape2D_yd3c8")
+
+[node name="RigidBodyFloor" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyFloor"]
+position = Vector2(320, 430)
+shape = SubResource("RectangleShape2D_yd3c8")
+
+[node name="BarTop" parent="." instance=ExtResource("1_56hru")]
+layout_mode = 1
+Title = "Gong"
+Action_Two = "+Ball"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 50.0
+offset_right = 330.0
+offset_bottom = 400.0
+color = Color(1, 1, 1, 0.156863)
+
+[node name="Node2DSpawn" type="Node2D" parent="."]
+position = Vector2(320, 220)
+
+[node name="ItemPanelLeft" parent="." instance=ExtResource("4_yd3c8")]
+position = Vector2(10, 180)
+Speed_In_Pixels = 260
+Key_Filter_Up = "Left Up"
+Key_Filter_Down = "Left Down"
+Light_Color = Color(1, 0, 0, 1)
+
+[node name="ItemPanelRight" parent="." instance=ExtResource("4_yd3c8")]
+position = Vector2(610, 180)
+Speed_In_Pixels = 260
+Key_Filter_Up = "Right Up"
+Key_Filter_Down = "Right Down"
+Light_Color = Color(0, 0.166667, 1, 1)
+
+[node name="LabelLeftScore" type="Label" parent="."]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 50.0
+offset_right = 310.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelRightScore" type="Label" parent="."]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 50.0
+offset_right = 380.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0, 0.166667, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RigidBodyGoalLeft" type="RigidBody2D" parent="."]
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyGoalLeft"]
+position = Vector2(-50, 225)
+shape = SubResource("RectangleShape2D_tonuu")
+
+[node name="RigidBodyGoalRight" type="RigidBody2D" parent="."]
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyGoalRight"]
+position = Vector2(690, 225)
+shape = SubResource("RectangleShape2D_tonuu")
+
+[node name="LabelRounds" type="Label" parent="."]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 10.0
+offset_right = 370.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 8
+text = "Round 0 of 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="WinPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="WinPanel/CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yd3c8")
+
+[node name="MarginContainer" type="MarginContainer" parent="WinPanel/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinPanel/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="WinPanel/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="LabelWinner" type="Label" parent="WinPanel/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "LR Player Wins"
+horizontal_alignment = 1
+
+[node name="ButtonDone" type="Button" parent="WinPanel/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Main Menu"
+
+[node name="CountPanel" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yd3c8")
+
+[node name="Label" type="Label" parent="CountPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 56
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="ContainLeftTarget" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 40.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_i8enm")
+
+[node name="UiTargetLeftPanel" parent="ContainLeftTarget" instance=ExtResource("5_i8enm")]
+layout_mode = 2
+Emulate_Touch_With_Mouse = true
+
+[node name="ContainRightTarget" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 50.0
+offset_right = 640.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_i8enm")
+
+[node name="UiTargetRightPanel" parent="ContainRightTarget" instance=ExtResource("5_i8enm")]
+layout_mode = 2
+Emulate_Touch_With_Mouse = true
+
+[connection signal="body_entered" from="RigidBodyCeiling" to="." method="_on_rigid_body_ceiling_body_entered"]
+[connection signal="body_entered" from="RigidBodyFloor" to="." method="_on_rigid_body_floor_body_entered"]
+[connection signal="On_Secondary_Action" from="BarTop" to="." method="_on_bar_top_on_secondary_action"]
+[connection signal="kick" from="ItemPanelLeft" to="." method="_on_item_panel_left_kick"]
+[connection signal="kick" from="ItemPanelRight" to="." method="_on_item_panel_right_kick"]
+[connection signal="body_entered" from="RigidBodyGoalLeft" to="." method="_on_rigid_body_goal_left_body_entered"]
+[connection signal="body_entered" from="RigidBodyGoalRight" to="." method="_on_rigid_body_goal_right_body_entered"]
+[connection signal="pressed" from="WinPanel/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonDone" to="." method="_on_button_done_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="on_target_drag" from="ContainLeftTarget/UiTargetLeftPanel" to="." method="_on_ui_target_left_panel_on_target_drag"]
+[connection signal="on_target_end" from="ContainLeftTarget/UiTargetLeftPanel" to="." method="_on_ui_target_left_panel_on_target_end"]
+[connection signal="on_target_touch" from="ContainLeftTarget/UiTargetLeftPanel" to="." method="_on_ui_target_left_panel_on_target_touch"]
+[connection signal="on_target_drag" from="ContainRightTarget/UiTargetRightPanel" to="." method="_on_ui_target_right_panel_on_target_drag"]
+[connection signal="on_target_end" from="ContainRightTarget/UiTargetRightPanel" to="." method="_on_ui_target_right_panel_on_target_end"]
+[connection signal="on_target_touch" from="ContainRightTarget/UiTargetRightPanel" to="." method="_on_ui_target_right_panel_on_target_touch"]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://kpm2opaj3yb8"]
+
+[ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_m52df"]
+[ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/ui_bar_top.tscn" id="3_7ml4t"]
+
+[node name="ControlScreenHelp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_m52df")
+
+[node name="BarTop" parent="." instance=ExtResource("3_7ml4t")]
+layout_mode = 1
+Title = "Help and About"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -277.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RichTextLabel" type="Label" parent="CenterContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "This is a physics-based Pong implementation that can be played on one keyboard.
+
+Players control the left or right panel using QWERTY keys or the quivalent keys on the keyboard. The defaults are:
+
+Left Panel:	[Q]/[A]
+Right Panel:	[P]/[L]
+Add Ball: 	[Space]
+
+Players can rebind these keys in Settings if you want.
+
+When the ball is added, the first player to move their panel \"kicks\" it towards their goal aimed either up or down.
+
+You can set your player colors and game length in the settings.
+
+This is designed as a reference project, with a number of base features required for more advanced games demonstrated."
+autowrap_mode = 2
+tab_stops = PackedFloat32Array(26)
