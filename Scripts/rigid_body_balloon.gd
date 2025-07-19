@@ -9,11 +9,11 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	var event_name: String = GameSettings.get_action_name(event)
-	if event_name.to_lower().contains("ball"):
+	if event_name.to_lower().contains("bump"):
 		do_jump()
 	pass
 	
 func do_jump():
 	print("JUMP")
-	apply_central_impulse(Vector2i(2,-20))
+	apply_central_impulse(Vector2i(2,-15))
 	pass

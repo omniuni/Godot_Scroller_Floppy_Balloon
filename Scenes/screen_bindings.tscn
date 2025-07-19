@@ -68,28 +68,14 @@ layout_mode = 2
 disabled = true
 text = "Custom"
 
-[node name="UiRebinderLPU" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
+[node name="UiRebinderBump" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
 layout_mode = 2
-Action_to_Rebind = "Panel Left Up"
-Action_Name = "Left Panel Upp"
+Action_to_Rebind = "Bump"
+Action_Name = "Bump"
 
-[node name="UiRebinderLPD" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
+[node name="UiRebinderBop" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
 layout_mode = 2
-Action_to_Rebind = "Panel Left Down"
-Action_Name = "Left Panel Down"
-
-[node name="UiRebinderRPU" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
-layout_mode = 2
-Action_to_Rebind = "Panel Right Up"
-Action_Name = "Right Panel Up"
-
-[node name="UiRebinderRPD" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
-layout_mode = 2
-Action_to_Rebind = "Panel Right Down"
-Action_Name = "Right Panel Down"
-
-[node name="UiRebinderAB" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
-layout_mode = 2
-Action_to_Rebind = "Add Ball"
+Action_to_Rebind = "Bop"
+Action_Name = "Bop"
 
 [connection signal="On_Secondary_Action" from="BarTop" to="." method="_on_bar_top_on_secondary_action"]

@@ -32,17 +32,15 @@ func floor_and_ceiling():
 	
 	var tile_row_ceiling = 0
 	var tile_row_floor = 17
-	var buffer = 10
+	var buffer = 6
 	
 	var gen_start = tile_map_cave_walls.get_cell_leftmost(game_camera)-buffer
 	var gen_end = tile_map_cave_walls.get_cell_rightmost(game_camera)+buffer
 	
-	print("gen_end: "+str(gen_end))
-	
 	for i in range(gen_start, gen_end):
 		if(not cols_rendered.has(i)):
 		
-			print("Render col: "+str(i))
+			print("Rendering new Column: "+str(i))
 			
 			if(centerpoint == -1):
 				centerpoint = RandomNumberGenerator.new().randi_range(tile_row_ceiling, tile_row_floor)
