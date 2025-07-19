@@ -15,3 +15,4 @@ export_credentials.cfg
 data_*/
 mono_crash.*.json
 export_presets.cfg
+.DS_Store

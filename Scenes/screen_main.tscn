@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds0jps4mqwatn"]
+[gd_scene load_steps=8 format=3 uid="uid://ds0jps4mqwatn"]
 
 [ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/ui_bar_top.tscn" id="1_56hru"]
 [ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_al584"]
 [ext_resource type="Script" uid="uid://dgeyldqo75nkn" path="res://Scripts/screen_main.gd" id="1_c6q44"]
-[ext_resource type="PackedScene" uid="uid://caong3awgnxiv" path="res://Scenes/item_panel.tscn" id="4_yd3c8"]
-[ext_resource type="PackedScene" uid="uid://bvae13382ehhd" path="res://Scenes/ui_target.tscn" id="5_i8enm"]
+[ext_resource type="PackedScene" uid="uid://cq1o5hcqif62l" path="res://Scenes/sub_game.tscn" id="6_rhby6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yd3c8"]
 size = Vector2(660, 60)
@@ -14,8 +13,6 @@ size = Vector2(100, 330)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd3c8"]
 bg_color = Color(0, 0, 0, 0.784314)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8enm"]
 
 [node name="ScreenMainControl" type="Control"]
 layout_mode = 3
@@ -27,9 +24,6 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_al584")
 script = ExtResource("1_c6q44")
-Ball_Speed = 140
-Ball_Speedup = 8
-Action_Two_Text = "+Ball"
 
 [node name="RigidBodyCeiling" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
@@ -55,59 +49,8 @@ shape = SubResource("RectangleShape2D_yd3c8")
 
 [node name="BarTop" parent="." instance=ExtResource("1_56hru")]
 layout_mode = 1
-Title = "Gong"
-Action_Two = "+Ball"
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 310.0
-offset_top = 50.0
-offset_right = 330.0
-offset_bottom = 400.0
-color = Color(1, 1, 1, 0.156863)
-
-[node name="Node2DSpawn" type="Node2D" parent="."]
-position = Vector2(320, 220)
-
-[node name="ItemPanelLeft" parent="." instance=ExtResource("4_yd3c8")]
-position = Vector2(10, 180)
-Speed_In_Pixels = 260
-Key_Filter_Up = "Left Up"
-Key_Filter_Down = "Left Down"
-Light_Color = Color(1, 0, 0, 1)
-
-[node name="ItemPanelRight" parent="." instance=ExtResource("4_yd3c8")]
-position = Vector2(610, 180)
-Speed_In_Pixels = 260
-Key_Filter_Up = "Right Up"
-Key_Filter_Down = "Right Down"
-Light_Color = Color(0, 0.166667, 1, 1)
-
-[node name="LabelLeftScore" type="Label" parent="."]
-layout_mode = 0
-offset_left = 260.0
-offset_top = 50.0
-offset_right = 310.0
-offset_bottom = 100.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 24
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LabelRightScore" type="Label" parent="."]
-layout_mode = 0
-offset_left = 330.0
-offset_top = 50.0
-offset_right = 380.0
-offset_bottom = 100.0
-theme_override_colors/font_color = Color(0, 0.166667, 1, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 24
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
+Title = "Floppy Balloon"
+Action_Two = "Start"
 
 [node name="RigidBodyGoalLeft" type="RigidBody2D" parent="."]
 freeze = true
@@ -128,17 +71,6 @@ max_contacts_reported = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyGoalRight"]
 position = Vector2(690, 225)
 shape = SubResource("RectangleShape2D_tonuu")
-
-[node name="LabelRounds" type="Label" parent="."]
-layout_mode = 0
-offset_left = 180.0
-offset_top = 10.0
-offset_right = 370.0
-offset_bottom = 40.0
-theme_override_font_sizes/font_size = 8
-text = "Round 0 of 0"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="WinPanel" type="Panel" parent="."]
 visible = false
@@ -220,41 +152,16 @@ vertical_alignment = 1
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="ContainLeftTarget" type="PanelContainer" parent="."]
+[node name="SubGame" parent="." instance=ExtResource("6_rhby6")]
 layout_mode = 0
-offset_top = 50.0
-offset_right = 40.0
-offset_bottom = 400.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_i8enm")
-
-[node name="UiTargetLeftPanel" parent="ContainLeftTarget" instance=ExtResource("5_i8enm")]
-layout_mode = 2
-Emulate_Touch_With_Mouse = true
-
-[node name="ContainRightTarget" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_left = 600.0
 offset_top = 50.0
 offset_right = 640.0
 offset_bottom = 400.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_i8enm")
-
-[node name="UiTargetRightPanel" parent="ContainRightTarget" instance=ExtResource("5_i8enm")]
-layout_mode = 2
-Emulate_Touch_With_Mouse = true
 
 [connection signal="body_entered" from="RigidBodyCeiling" to="." method="_on_rigid_body_ceiling_body_entered"]
 [connection signal="body_entered" from="RigidBodyFloor" to="." method="_on_rigid_body_floor_body_entered"]
 [connection signal="On_Secondary_Action" from="BarTop" to="." method="_on_bar_top_on_secondary_action"]
-[connection signal="kick" from="ItemPanelLeft" to="." method="_on_item_panel_left_kick"]
-[connection signal="kick" from="ItemPanelRight" to="." method="_on_item_panel_right_kick"]
 [connection signal="body_entered" from="RigidBodyGoalLeft" to="." method="_on_rigid_body_goal_left_body_entered"]
 [connection signal="body_entered" from="RigidBodyGoalRight" to="." method="_on_rigid_body_goal_right_body_entered"]
 [connection signal="pressed" from="WinPanel/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonDone" to="." method="_on_button_done_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="on_target_drag" from="ContainLeftTarget/UiTargetLeftPanel" to="." method="_on_ui_target_left_panel_on_target_drag"]
-[connection signal="on_target_end" from="ContainLeftTarget/UiTargetLeftPanel" to="." method="_on_ui_target_left_panel_on_target_end"]
-[connection signal="on_target_touch" from="ContainLeftTarget/UiTargetLeftPanel" to="." method="_on_ui_target_left_panel_on_target_touch"]
-[connection signal="on_target_drag" from="ContainRightTarget/UiTargetRightPanel" to="." method="_on_ui_target_right_panel_on_target_drag"]
-[connection signal="on_target_end" from="ContainRightTarget/UiTargetRightPanel" to="." method="_on_ui_target_right_panel_on_target_end"]
-[connection signal="on_target_touch" from="ContainRightTarget/UiTargetRightPanel" to="." method="_on_ui_target_right_panel_on_target_touch"]
