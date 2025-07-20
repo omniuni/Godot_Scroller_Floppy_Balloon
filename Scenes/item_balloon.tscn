@@ -39,3 +39,9 @@ centered = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyBalloon"]
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_igkki")
+
+[node name="Debouncer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="Debouncer" to="RigidBodyBalloon" method="_on_debouncer_timeout"]

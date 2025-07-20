@@ -9,7 +9,10 @@ var timerTerrain: Timer = $TimerGenerateTerrain
 @onready
 var game_camera: Camera2D = $SubViewport.get_camera_2d()
 
+var generator = RandomNumberGenerator.new()
+
 func _ready() -> void:
+	generator.seed = GameSettings.Seed
 	floor_and_ceiling()
 	timerTerrain.start()
 	pass
@@ -43,9 +46,9 @@ func floor_and_ceiling():
 			print("Rendering new Column: "+str(i))
 			
 			if(centerpoint == -1):
-				centerpoint = RandomNumberGenerator.new().randi_range(tile_row_ceiling, tile_row_floor)
+				centerpoint = generator.randi_range(tile_row_ceiling, tile_row_floor)
 			else:
-				centerpoint+=RandomNumberGenerator.new().randi_range(-1, 1)
+				centerpoint+=generator.randi_range(-1, 1)
 			if(centerpoint-width_half-1 < tile_row_ceiling): centerpoint = tile_row_ceiling+width_half+1
 			if(centerpoint+width_half+1 > tile_row_floor): centerpoint = tile_row_floor-width_half-1
 			
