@@ -1,6 +1,7 @@
+class_name ItemBalloon
 extends Control
 
-@export var Ball_Scene: PackedScene = preload("res://Scenes/item_ball.tscn")
+@export var Ball_Scene: PackedScene = preload("res://Scenes/item_balloon.tscn")
 @export var Action_Two_Text: String = ""
 
 @onready var menu_bar: UiBarTop = $BarTop
@@ -9,7 +10,7 @@ extends Control
 @onready var ui_count_panel: Panel = $CountPanel
 @onready var ui_count_panel_label: Label = $CountPanel/Label
 
-var current_ball: ItemBall = null
+var current_ball: ItemBalloon = null
 
 var add_ball_in: int = 0
 

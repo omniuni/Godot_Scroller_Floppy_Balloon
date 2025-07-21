@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://plijsrh17yxp"]
 
-[ext_resource type="Script" uid="uid://bkupiek4w5s08" path="res://Scripts/rigid_body_balloon.gd" id="1_hcw2g"]
+[ext_resource type="Script" uid="uid://egxp5yvkmnys" path="res://Scripts/item_balloon.gd" id="1_a16fh"]
 [ext_resource type="Texture2D" uid="uid://iro6jsqwmtr2" path="res://Gfx/balloon.png" id="1_igkki"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hcw2g"]
@@ -12,6 +12,7 @@ radius = 17.0
 height = 42.0
 
 [node name="ItemBalloon" type="Node2D"]
+script = ExtResource("1_a16fh")
 
 [node name="RigidBodyBalloon" type="RigidBody2D" parent="."]
 mass = 0.075
@@ -19,7 +20,6 @@ physics_material_override = SubResource("PhysicsMaterial_hcw2g")
 center_of_mass_mode = 1
 center_of_mass = Vector2(0, 20)
 max_contacts_reported = 1
-script = ExtResource("1_hcw2g")
 
 [node name="Camera2D" type="Camera2D" parent="RigidBodyBalloon"]
 limit_left = 0

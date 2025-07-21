@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Node2D
 
 @export
 var Bump_Horizontal: int = 2
@@ -9,15 +9,17 @@ var Bop_Horizontal: int = 1 # make negative for "back"
 @export
 var Bop_Vertical: int = 5
 @export
-var Debounce_Rough_Msec: int = 100
+var Debounce_Rough_Msec: int = 200
 @export
-var Hit_Ratio: float = 0.6
+var Hit_Ratio: float = 0.9
 
 var bump_debounce: int = 0
 var bop_debounce: int = 0
 
 @onready
-var balloon: Sprite2D = $Balloon
+var body: RigidBody2D = $RigidBodyBalloon
+@onready
+var balloon: Sprite2D = $RigidBodyBalloon/Balloon
 
 func _ready() -> void:
 	balloon.self_modulate = GameSettings.Color_P1
@@ -36,11 +38,11 @@ func do_bump(event: InputEvent):
 	print("bump_debounce "+str(bump_debounce))
 	if not event.is_echo():
 		print("Big Bump!")
-		apply_central_impulse(Vector2i(Bump_Horizontal,Bump_Vertical*-1))
+		body.apply_central_impulse(Vector2i(Bump_Horizontal,Bump_Vertical*-1))
 		bump_debounce=Debounce_Rough_Msec
 	if event.is_echo() and bump_debounce == 0:
 		print("Little Bump!")
-		apply_central_impulse(Vector2i(Bump_Horizontal,-1*Bump_Vertical*Hit_Ratio))
+		body.apply_central_impulse(Vector2i(Bump_Horizontal,-1*Bump_Vertical*Hit_Ratio))
 		bump_debounce=Debounce_Rough_Msec
 	pass
 	
