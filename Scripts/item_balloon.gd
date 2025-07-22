@@ -1,17 +1,19 @@
 extends Node2D
 
 @export
-var Bump_Horizontal: int = 2
+var Bump_Horizontal: int = 4
 @export
-var Bump_Vertical: int = 15 # make negative for "up"
+var Bump_Vertical: int = 12 # make negative for "up"
 @export
 var Bop_Horizontal: int = 1 # make negative for "back"
 @export
 var Bop_Vertical: int = 5
 @export
-var Debounce_Rough_Msec: int = 200
+var Debounce_Rough_Msec: int = 500
 @export
-var Hit_Ratio: float = 0.9
+var Hit_Ratio: float = .6
+@export
+var Max_Velocity_Horizontal: int = 260
 
 var bump_debounce: int = 0
 var bop_debounce: int = 0
@@ -34,15 +36,18 @@ func _input(event: InputEvent) -> void:
 	pass
 	
 func do_bump(event: InputEvent):
-	print("do_bump")
-	print("bump_debounce "+str(bump_debounce))
-	if not event.is_echo():
+	var horizontal_velocity = body.linear_velocity.x
+	var difference = Max_Velocity_Horizontal-horizontal_velocity
+	var scale_down = difference/Max_Velocity_Horizontal
+	if scale_down > 1:
+		scale_down = 1
+	if not event.is_echo() and not event.is_released():
 		print("Big Bump!")
-		body.apply_central_impulse(Vector2i(Bump_Horizontal,Bump_Vertical*-1))
+		body.apply_central_impulse(Vector2i(Bump_Horizontal*scale_down,Bump_Vertical*-1))
 		bump_debounce=Debounce_Rough_Msec
 	if event.is_echo() and bump_debounce == 0:
 		print("Little Bump!")
-		body.apply_central_impulse(Vector2i(Bump_Horizontal,-1*Bump_Vertical*Hit_Ratio))
+		body.apply_central_impulse(Vector2i(Bump_Horizontal*scale_down,-1*Bump_Vertical*Hit_Ratio))
 		bump_debounce=Debounce_Rough_Msec
 	pass
 	

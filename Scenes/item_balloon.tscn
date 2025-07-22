@@ -15,8 +15,9 @@ height = 42.0
 script = ExtResource("1_a16fh")
 
 [node name="RigidBodyBalloon" type="RigidBody2D" parent="."]
-mass = 0.075
+mass = 0.06
 physics_material_override = SubResource("PhysicsMaterial_hcw2g")
+gravity_scale = 0.3
 center_of_mass_mode = 1
 center_of_mass = Vector2(0, 20)
 max_contacts_reported = 1
@@ -44,4 +45,4 @@ shape = SubResource("CapsuleShape2D_igkki")
 wait_time = 0.05
 autostart = true
 
-[connection signal="timeout" from="Debouncer" to="RigidBodyBalloon" method="_on_debouncer_timeout"]
+[connection signal="timeout" from="Debouncer" to="." method="_on_debouncer_timeout"]
