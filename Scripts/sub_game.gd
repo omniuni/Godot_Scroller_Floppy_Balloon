@@ -11,7 +11,7 @@ var game_camera: Camera2D = $SubViewport.get_camera_2d()
 
 var generator = RandomNumberGenerator.new()
 
-func _ready() -> void:      
+func _ready() -> void:
 	generator.seed = GameSettings.Seed
 	floor_and_ceiling()
 	timerTerrain.start()

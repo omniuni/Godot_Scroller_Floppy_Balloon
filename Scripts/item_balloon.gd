@@ -9,11 +9,15 @@ var Bop_Horizontal: int = 1 # make negative for "back"
 @export
 var Bop_Vertical: int = 5
 @export
-var Debounce_Rough_Msec: int = 500
+var Debounce_Rough_Msec: int = 150
 @export
-var Hit_Ratio: float = .6
+var Debounce_Msec_Multiplier: int = 7
+@export
+var Hit_Ratio: float = .5
 @export
 var Max_Velocity_Horizontal: int = 260
+
+var generator = RandomNumberGenerator.new()
 
 var bump_debounce: int = 0
 var bop_debounce: int = 0
@@ -25,6 +29,7 @@ var balloon: Sprite2D = $RigidBodyBalloon/Balloon
 
 func _ready() -> void:
 	balloon.self_modulate = GameSettings.Color_P1
+	generator.seed = GameSettings.Seed
 	pass
 
 func _input(event: InputEvent) -> void:
@@ -44,11 +49,11 @@ func do_bump(event: InputEvent):
 	if not event.is_echo() and not event.is_released():
 		print("Big Bump!")
 		body.apply_central_impulse(Vector2i(Bump_Horizontal*scale_down,Bump_Vertical*-1))
-		bump_debounce=Debounce_Rough_Msec
+		bump_debounce=Debounce_Rough_Msec*Debounce_Msec_Multiplier
 	if event.is_echo() and bump_debounce == 0:
 		print("Little Bump!")
 		body.apply_central_impulse(Vector2i(Bump_Horizontal*scale_down,-1*Bump_Vertical*Hit_Ratio))
-		bump_debounce=Debounce_Rough_Msec
+		bump_debounce=Debounce_Rough_Msec*generator.randi_range(1,Debounce_Msec_Multiplier)
 	pass
 	
 func do_bop(event: InputEvent):
