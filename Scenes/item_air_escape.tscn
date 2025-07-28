@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx0odw0ldwur6"]
+
+[ext_resource type="Script" uid="uid://ds7r44hmypi86" path="res://Scripts/item_air_escape.gd" id="1_4eekk"]
+
+[sub_resource type="Gradient" id="Gradient_v0q0b"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4eekk"]
+gradient = SubResource("Gradient_v0q0b")
+width = 4
+height = 4
+
+[sub_resource type="Gradient" id="Gradient_fhsdc"]
+colors = PackedColorArray(1, 1, 1, 0.815686, 1, 1, 1, 0)
+
+[node name="ItemAirEscape" type="Node2D"]
+script = ExtResource("1_4eekk")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+texture = SubResource("GradientTexture2D_4eekk")
+lifetime = 0.3
+explosiveness = 0.2
+randomness = 0.2
+fixed_fps = 30
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 100.0
+color_ramp = SubResource("Gradient_fhsdc")

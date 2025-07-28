@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://plijsrh17yxp"]
+[gd_scene load_steps=6 format=3 uid="uid://plijsrh17yxp"]
 
 [ext_resource type="Script" uid="uid://egxp5yvkmnys" path="res://Scripts/item_balloon.gd" id="1_a16fh"]
 [ext_resource type="Texture2D" uid="uid://iro6jsqwmtr2" path="res://Gfx/balloon.png" id="1_igkki"]
+[ext_resource type="Script" uid="uid://cdsj8mmdsu0jt" path="res://Scripts/Components/RigidBody2DX.gd" id="2_a16fh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hcw2g"]
 friction = 0.6
@@ -20,7 +21,10 @@ physics_material_override = SubResource("PhysicsMaterial_hcw2g")
 gravity_scale = 0.3
 center_of_mass_mode = 1
 center_of_mass = Vector2(0, 20)
-max_contacts_reported = 1
+contact_monitor = true
+max_contacts_reported = 3
+script = ExtResource("2_a16fh")
+metadata/_custom_type_script = "uid://cdsj8mmdsu0jt"
 
 [node name="Camera2D" type="Camera2D" parent="RigidBodyBalloon"]
 limit_left = 0
@@ -45,4 +49,6 @@ shape = SubResource("CapsuleShape2D_igkki")
 wait_time = 0.05
 autostart = true
 
+[connection signal="body_entered" from="RigidBodyBalloon" to="." method="_on_rigid_body_balloon_body_entered"]
+[connection signal="body_exited" from="RigidBodyBalloon" to="." method="_on_rigid_body_balloon_body_exited"]
 [connection signal="timeout" from="Debouncer" to="." method="_on_debouncer_timeout"]

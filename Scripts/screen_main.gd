@@ -10,13 +10,15 @@ extends Control
 @onready var ui_count_panel: Panel = $CountPanel
 @onready var ui_count_panel_label: Label = $CountPanel/Label
 
-var current_ball: ItemBalloon = null
+@onready var ui_life_progress: ProgressBar = $ProgressBar
+@onready var balloon = $SubGame/SubViewport/ItemBalloon
 
 var add_ball_in: int = 0
 
 func _ready():
 	GameSettings.apply_custom_key_bindings()
 	init_ui()
+	balloon.request_life()
 	pass
 	
 func _input(event: InputEvent) -> void:
@@ -29,7 +31,10 @@ func init_ui() -> void:
 	pass
 
 func _on_bar_top_on_secondary_action() -> void:
-	if current_ball == null and add_ball_in == 0:
-		add_ball_in = 4
 	menu_bar.Action_Two = ""
+	pass
+
+func _on_item_balloon_balloon_life(life: float) -> void:
+	if ui_life_progress is Node:
+		ui_life_progress.value = life
 	pass
