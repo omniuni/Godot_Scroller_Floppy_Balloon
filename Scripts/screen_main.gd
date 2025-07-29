@@ -28,6 +28,12 @@ func _input(event: InputEvent) -> void:
 	pass
 	
 func init_ui() -> void:
+	Beeper.bgm_start()
+	pass
+	
+func _notification(notification_int: int) -> void:
+	if notification_int == NOTIFICATION_EXIT_TREE:
+		Beeper.bgm_stop()
 	pass
 
 func _on_bar_top_on_secondary_action() -> void:

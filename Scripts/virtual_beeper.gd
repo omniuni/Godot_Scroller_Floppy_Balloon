@@ -9,6 +9,60 @@ extends Node
 @onready
 var beep: AudioStreamPlayer = $beep
 
+@onready
+var bgm: AudioStreamPlayer = $bgm
+
+@onready
+var hiss: AudioStreamPlayer = $balloon
+
+@onready
+var bump: AudioStreamPlayer = $bump
+
+@onready
+var bop: AudioStreamPlayer = $bop
+
+var hiss_playing = false
+
+func bgm_start():
+	if not GameSettings.Audio_Enabled:
+		return
+	if not bgm.playing:
+		bgm.play()
+	pass
+	
+func bgm_stop():
+	if bgm.playing:
+		bgm.stop()
+	pass
+	
+func hiss_start():
+	hiss_playing = true
+	hiss_play()
+	pass
+	
+func hiss_play():
+	if not GameSettings.Audio_Enabled or hiss_playing == false:
+		return
+	if not hiss.playing:
+		hiss.play()
+	pass
+	
+func hiss_stop():
+	hiss_playing = false
+	pass
+	
+func _on_balloon_finished() -> void:
+	hiss_play()
+	pass
+
+func bump_play():
+	bump.play()
+	pass
+	
+func bop_play():
+	bop.play()
+	pass
+
 func play(time: float = 0.1, pitch: float = 1.0):
 	if not GameSettings.Audio_Enabled:
 		return

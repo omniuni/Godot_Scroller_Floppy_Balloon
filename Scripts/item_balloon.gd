@@ -58,6 +58,7 @@ func do_bump(event: InputEvent):
 		scale_down = 1
 	if not event.is_echo() and not event.is_released():
 		print("Big Bump!")
+		Beeper.bop_play()
 		balloon_body.apply_central_impulse(Vector2i(Bump_Horizontal*scale_down,Bump_Vertical*-1))
 		bump_debounce=Debounce_Rough_Msec*Debounce_Msec_Multiplier
 	if event.is_echo() and bump_debounce == 0:
@@ -92,6 +93,7 @@ func _on_rigid_body_balloon_body_entered(body: Node) -> void:
 	var state: PhysicsDirectBodyState2D = balloon_body.get_last_known_physics_state()
 	var active_collisions: int = state.get_contact_count()
 	print("Body entered, active collisions: "+str(active_collisions))
+	Beeper.bump_play()
 	for i in range(active_collisions):
 		var local_collision_point = balloon_body.to_local(state.get_contact_local_position(i))
 		print("collided at: "+str(local_collision_point))
@@ -110,8 +112,10 @@ func _on_rigid_body_balloon_body_entered(body: Node) -> void:
 				Current_Life-=5
 				balloon_life.emit(snapped(Current_Life/Max_Life, 0.01)*100)
 			is_deflating = true
+			Beeper.hiss_start()
 		else:
 			is_deflating = false
+			Beeper.hiss_stop()
 	pass
 
 func request_life():
@@ -123,4 +127,5 @@ func _on_rigid_body_balloon_body_exited(body: Node) -> void:
 	for item: ItemAirEscape in airs:
 		item.emitter.emitting = false
 	is_deflating = false
+	Beeper.hiss_stop()
 	pass
