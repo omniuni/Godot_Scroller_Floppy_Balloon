@@ -37,7 +37,7 @@ var balloon_body: RigidBody2D = $RigidBodyBalloon
 var balloon: Sprite2D = $RigidBodyBalloon/Balloon
 
 func _ready() -> void:
-	balloon.self_modulate = GameSettings.Color_P1
+	balloon.self_modulate = GameSettings.Color_P1.lightened(0.2)
 	generator.seed = GameSettings.Seed
 	balloon_life.emit(snapped(Current_Life/Max_Life, 0.01)*100)
 	pass

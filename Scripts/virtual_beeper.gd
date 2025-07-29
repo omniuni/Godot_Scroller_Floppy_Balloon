@@ -13,6 +13,9 @@ var beep: AudioStreamPlayer = $beep
 var bgm: AudioStreamPlayer = $bgm
 
 @onready
+var mbgm: AudioStreamPlayer = $mbgm
+
+@onready
 var hiss: AudioStreamPlayer = $balloon
 
 @onready
@@ -33,6 +36,18 @@ func bgm_start():
 func bgm_stop():
 	if bgm.playing:
 		bgm.stop()
+	pass
+	
+func mbgm_start():
+	if not GameSettings.Audio_Enabled:
+		return
+	if not mbgm.playing:
+		mbgm.play()
+	pass
+	
+func mbgm_stop():
+	if mbgm.playing:
+		mbgm.stop()
 	pass
 	
 func hiss_start():

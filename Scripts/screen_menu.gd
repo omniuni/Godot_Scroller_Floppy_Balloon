@@ -5,6 +5,7 @@ func _ready() -> void:
 	# No way to "Exit" on the web.
 	var button_exit: Button = $MarginContainer/VBoxContainer/VBoxOptions/ButtonExit
 	button_exit.visible = OS.get_name() != "Web"
+	Beeper.mbgm_start()
 	pass
 
 func _on_button_notes_pressed() -> void:
@@ -25,4 +26,9 @@ func _on_button_help_about_pressed() -> void:
 func _on_button_exit_pressed() -> void:
 	Beeper.play_ui()
 	Scenes.quit(get_tree())
+	pass
+
+func _notification(notification_int: int) -> void:
+	if notification_int == NOTIFICATION_EXIT_TREE:
+		Beeper.mbgm_stop()
 	pass
