@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://plijsrh17yxp"]
+[gd_scene load_steps=9 format=3 uid="uid://plijsrh17yxp"]
 
 [ext_resource type="Script" uid="uid://egxp5yvkmnys" path="res://Scripts/item_balloon.gd" id="1_a16fh"]
 [ext_resource type="Texture2D" uid="uid://iro6jsqwmtr2" path="res://Gfx/balloon.png" id="1_igkki"]
@@ -7,6 +7,115 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hcw2g"]
 friction = 0.6
 bounce = 0.3
+
+[sub_resource type="Animation" id="Animation_qkjg4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BalloonSkeleton/BSRight:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BalloonSkeleton/BSLeft:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BalloonSkeleton/BSUp:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BalloonSkeleton/BSDown:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a16fh"]
+resource_name = "Deflate"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BalloonSkeleton/BSRight:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.1, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BalloonSkeleton/BSLeft:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.1, 0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BalloonSkeleton/BSUp:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.4, 0.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BalloonSkeleton/BSDown:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 0.4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qkjg4"]
+_data = {
+&"Deflate": SubResource("Animation_a16fh"),
+&"RESET": SubResource("Animation_qkjg4")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_igkki"]
 radius = 17.0
@@ -26,6 +135,50 @@ max_contacts_reported = 3
 script = ExtResource("2_a16fh")
 metadata/_custom_type_script = "uid://cdsj8mmdsu0jt"
 
+[node name="BalloonPolygon" type="Polygon2D" parent="RigidBodyBalloon"]
+texture_filter = 1
+position = Vector2(-23, -17)
+texture = ExtResource("1_igkki")
+skeleton = NodePath("../BalloonSkeleton")
+polygon = PackedVector2Array(17.1279, 0.00389478, 30.7972, -0.175964, 35.5377, 2.7212, 38.9566, 5.84272, 40.4431, 10.9615, 40.5916, 26.0583, 39.1052, 29.4771, 24.8618, 43.5297, 29.8957, 47.7911, 16.6974, 47.8927, 20.9049, 43.3499, 7.4441, 29.923, 5.51173, 25.761, 5.95776, 10.6642, 7.59274, 6.14, 11.6061, 1.82934, 23.4976, 17.1396, 23.4976, 18.4774)
+uv = PackedVector2Array(17.1279, 0.00389478, 30.7972, -0.175964, 35.5377, 2.7212, 38.9566, 5.84272, 40.4431, 10.9615, 40.5916, 26.0583, 39.1052, 29.4771, 24.8618, 43.5297, 29.8957, 47.7911, 16.6974, 47.8927, 20.9049, 43.3499, 7.4441, 29.923, 5.51173, 25.761, 5.95776, 10.6642, 7.59274, 6.14, 11.6061, 1.82934, 23.4976, 17.1396, 23.4976, 18.4774)
+polygons = [PackedInt32Array(16, 0, 1), PackedInt32Array(16, 1, 2), PackedInt32Array(16, 2, 3), PackedInt32Array(16, 3, 4), PackedInt32Array(16, 4, 5, 17), PackedInt32Array(17, 5, 6), PackedInt32Array(17, 6, 7), PackedInt32Array(17, 10, 11), PackedInt32Array(17, 11, 12), PackedInt32Array(17, 12, 13, 16), PackedInt32Array(16, 13, 14), PackedInt32Array(16, 14, 15), PackedInt32Array(16, 15, 0), PackedInt32Array(17, 7, 8, 9, 10)]
+bones = ["BSRight", PackedFloat32Array(0, 0, 0, 0.5, 1, 1, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "BSDown", PackedFloat32Array(0, 0, 0, 0, 0, 0.5, 0.5, 1, 1, 1, 1, 0.5, 0.5, 0, 0, 0, 0, 0), "BSLeft", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 1, 1, 0.5, 0, 0, 0), "BSUp", PackedFloat32Array(1, 1, 1, 1, 0.5, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 1, 1, 0, 0)]
+internal_vertex_count = 2
+
+[node name="BalloonSkeleton" type="Skeleton2D" parent="RigidBodyBalloon"]
+visible = false
+rotation = -6.31013e-05
+
+[node name="BSRight" type="Bone2D" parent="RigidBodyBalloon/BalloonSkeleton"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="BSDown" type="Bone2D" parent="RigidBodyBalloon/BalloonSkeleton"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 24.0
+bone_angle = 90.0
+
+[node name="BSLeft" type="Bone2D" parent="RigidBodyBalloon/BalloonSkeleton"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 180.0
+
+[node name="BSUp" type="Bone2D" parent="RigidBodyBalloon/BalloonSkeleton"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 270.0
+
+[node name="BalloonAnimationPlayer" type="AnimationPlayer" parent="RigidBodyBalloon"]
+libraries = {
+&"": SubResource("AnimationLibrary_qkjg4")
+}
+
 [node name="Camera2D" type="Camera2D" parent="RigidBodyBalloon"]
 limit_left = 0
 limit_top = 0
@@ -34,14 +187,7 @@ limit_bottom = 350
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="RigidBodyBalloon"]
 remote_path = NodePath("../Camera2D")
 
-[node name="Balloon" type="Sprite2D" parent="RigidBodyBalloon"]
-texture_filter = 1
-position = Vector2(-23, -17)
-scale = Vector2(2, 2)
-texture = ExtResource("1_igkki")
-centered = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyBalloon"]
+[node name="BalloonCollisionShape" type="CollisionShape2D" parent="RigidBodyBalloon"]
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_igkki")
 

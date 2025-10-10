@@ -21,7 +21,6 @@ func _process(delta: float) -> void:
 	
 	pass
 
-
 func _on_timer_timeout() -> void:
 	floor_and_ceiling()
 	pass
@@ -30,6 +29,8 @@ var cols_rendered = Array()
 
 var centerpoint = -1
 var width_half = 5
+	
+@export var tile_type_rock: Vector2i = Vector2i(0,0)
 	
 func floor_and_ceiling():
 	
@@ -54,9 +55,8 @@ func floor_and_ceiling():
 			
 			var ceiling_tile = Vector2i(i, tile_row_ceiling)
 			var floor_tile = Vector2i(i, tile_row_floor)
-			var tile = Vector2i(0,0)
-			tile_map_cave_walls.set_cell(ceiling_tile, 0, tile)
-			tile_map_cave_walls.set_cell(floor_tile, 0, tile)
+			tile_map_cave_walls.set_cell(ceiling_tile, 0, tile_type_rock)
+			tile_map_cave_walls.set_cell(floor_tile, 0, tile_type_rock)
 			for j in range(tile_row_ceiling+1, tile_row_floor):
 				var tile_target = Vector2i(i, j)
 				var back_tile = Vector2i(3, 0)
