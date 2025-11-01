@@ -13,7 +13,7 @@ config_version=5
 config/name="Floppy Balloon"
 config/version="0.5"
 run/main_scene="uid://b3ox6mxkai1n1"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/use_filter=false
 config/icon="uid://63fgwhx35ciu"
 

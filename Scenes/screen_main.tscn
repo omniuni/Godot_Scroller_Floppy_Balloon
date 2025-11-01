@@ -157,6 +157,7 @@ layout_mode = 0
 offset_top = 50.0
 offset_right = 640.0
 offset_bottom = 400.0
+platform_start = 8
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 0
