@@ -72,7 +72,7 @@ func floor_and_ceiling():
 				var tile_target = Vector2i(i, j)
 				if(j > centerpoint-width_half and j < centerpoint+width_half):
 					var rock_chance = generator.randi_range(0, 70)
-					if rock_chance < 3:
+					if rock_chance < 2:
 						tile_map_cave_walls.set_cell(tile_target, 0, tile_type_cave_crack)
 					elif rock_chance < 4:
 						tile_map_cave_walls.set_cell(tile_target, 0, tile_type_cave_rock)
