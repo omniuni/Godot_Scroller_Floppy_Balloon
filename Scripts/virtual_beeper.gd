@@ -56,7 +56,7 @@ func hiss_start():
 	pass
 	
 func hiss_play():
-	if not GameSettings.Audio_Enabled or hiss_playing == false:
+	if not GameSettings.Audio_SFX_Enabled or hiss_playing == false:
 		return
 	if not hiss.playing:
 		hiss.play()
@@ -71,15 +71,19 @@ func _on_balloon_finished() -> void:
 	pass
 
 func bump_play():
+	if not GameSettings.Audio_SFX_Enabled:
+		return
 	bump.play()
 	pass
 	
 func bop_play():
+	if not GameSettings.Audio_SFX_Enabled:
+		return
 	bop.play()
 	pass
 
 func play(time: float = 0.1, pitch: float = 1.0):
-	if not GameSettings.Audio_Enabled:
+	if not GameSettings.Audio_SFX_Enabled:
 		return
 	if beep.playing:
 		beep.stop()
@@ -90,25 +94,7 @@ func play(time: float = 0.1, pitch: float = 1.0):
 	pass
 
 func play_ui():
+	if not GameSettings.Audio_SFX_Enabled:
+		return
 	play(0.1, 1.8)
-	pass
-
-func play_ball():
-	play(0.1, 2.0)
-	pass
-	
-func play_hit():
-	play(0.07, 2.6)
-	pass
-	
-func play_wall():
-	play(0.07, 2.2)
-	pass
-	
-func play_panel():
-	play(0.07, 0.8)
-	pass
-	
-func play_out():
-	play(0.5, 0.6)
 	pass

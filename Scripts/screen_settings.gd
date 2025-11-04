@@ -9,6 +9,7 @@ func _ready():
 	GameSettings._Enable_Saving = false
 	update_display()
 	update_audio_toggle()
+	update_audio_sfx_toggle()
 	update_player_colors()
 	update_seed()
 	ui_setup_complete = true
@@ -32,6 +33,11 @@ func update_audio_toggle():
 	buttonEnableAudio.button_pressed = GameSettings.Audio_Enabled
 	pass
 	
+func update_audio_sfx_toggle():
+	var buttonEnableSFXAudio: CheckButton = $CenterContainer/GridContainer/AudioSFXCheck
+	buttonEnableSFXAudio.button_pressed = GameSettings.Audio_SFX_Enabled
+	pass
+	
 func update_player_colors():
 	var colorListP1: UiColorList = $CenterContainer/GridContainer/ItemColorListP1
 	var colorSquareP1: UiColorSquare = $CenterContainer/GridContainer/HBoxContainer/ColorSquareP1
@@ -50,6 +56,13 @@ func _on_audio_check_toggled(toggled_on: bool) -> void:
 	if ui_setup_complete:
 		Beeper.play_ui()
 	pass
+
+func _on_audio_sfx_check_toggled(toggled_on: bool) -> void:
+	GameSettings.Audio_SFX_Enabled = toggled_on
+	update_audio_sfx_toggle()
+	if ui_setup_complete:
+		Beeper.play_ui()
+	pass # Replace with function body.
 
 func _on_item_color_list_p_1_on_color_selected(color: Color) -> void:
 	var colorSquareP1: UiColorSquare = $CenterContainer/GridContainer/HBoxContainer/ColorSquareP1
@@ -76,7 +89,9 @@ func _on_button_kb_configure_pressed() -> void:
 func _on_line_edit_seed_text_changed(new_text: String) -> void:
 	var regex = RegEx.new()
 	regex.compile("[^0-9]")  # Matches anything NOT a digit (0-9)
-	var cleaned_text = regex.sub(new_text, "", true)  # Replace all matches with empty string
+	var cleaned_text: String = regex.sub(new_text, "", true)  # Replace all matches with empty string
+	if cleaned_text != '0' and cleaned_text != '':
+		cleaned_text = str(int(cleaned_text))
 	if new_text != cleaned_text:
 		$CenterContainer/GridContainer/LineEditSeed.text = cleaned_text
 		return

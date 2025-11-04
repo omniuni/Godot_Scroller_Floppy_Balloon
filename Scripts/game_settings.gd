@@ -11,6 +11,12 @@ var Audio_Enabled: bool = true:
 		Audio_Enabled = value
 		_save()
 		pass
+		
+var Audio_SFX_Enabled: bool = true:
+	set(value):
+		Audio_SFX_Enabled = value
+		_save()
+		pass
 
 var Color_P1: Color = Color(0,0,0):
 	set(value):

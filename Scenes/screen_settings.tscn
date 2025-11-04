@@ -51,9 +51,18 @@ popup/item_1/id = 1
 
 [node name="AudioLabel" type="Label" parent="CenterContainer/GridContainer"]
 layout_mode = 2
-text = "Audio"
+text = "Background Music"
 
 [node name="AudioCheck" type="CheckButton" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Enabled?"
+flat = true
+
+[node name="AudioSFXLabel" type="Label" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Sound Effects"
+
+[node name="AudioSFXCheck" type="CheckButton" parent="CenterContainer/GridContainer"]
 layout_mode = 2
 text = "Enabled?"
 flat = true
@@ -97,6 +106,7 @@ text = "Configure"
 
 [connection signal="item_selected" from="CenterContainer/GridContainer/DisplayOptions" to="." method="_on_display_options_item_selected"]
 [connection signal="toggled" from="CenterContainer/GridContainer/AudioCheck" to="." method="_on_audio_check_toggled"]
+[connection signal="toggled" from="CenterContainer/GridContainer/AudioSFXCheck" to="." method="_on_audio_sfx_check_toggled"]
 [connection signal="text_changed" from="CenterContainer/GridContainer/LineEditSeed" to="." method="_on_line_edit_seed_text_changed"]
 [connection signal="On_Color_Selected" from="CenterContainer/GridContainer/ItemColorListP1" to="." method="_on_item_color_list_p_1_on_color_selected"]
 [connection signal="pressed" from="CenterContainer/GridContainer/ButtonKBConfigure" to="." method="_on_button_kb_configure_pressed"]
