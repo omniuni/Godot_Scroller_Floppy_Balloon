@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b8ul4fcsewnkr"
+path="res://.godot/imported/04 [Game Start] Start to Soar.mp3-adda5032801b2371c9e17395678c0735.mp3str"
+
+[deps]
+
+source_file="res://Sfx/04 [Game Start] Start to Soar.mp3"
+dest_files=["res://.godot/imported/04 [Game Start] Start to Soar.mp3-adda5032801b2371c9e17395678c0735.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

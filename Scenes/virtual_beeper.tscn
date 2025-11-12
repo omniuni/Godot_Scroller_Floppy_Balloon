@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfrpg72d7im4j"]
 
 [ext_resource type="Script" uid="uid://bl1wat0ycj36f" path="res://Scripts/virtual_beeper.gd" id="1_idpjf"]
-[ext_resource type="AudioStream" uid="uid://bd5bl1cu28xw5" path="res://Gfx/sine440_1000ms.ogg" id="2_c5d5v"]
-[ext_resource type="AudioStream" uid="uid://d138l3hpbqjn0" path="res://Gfx/floating.ogg" id="3_7noch"]
-[ext_resource type="AudioStream" uid="uid://bt7tn2dvkjd4j" path="res://Gfx/balloon_hiss.ogg" id="4_hccw1"]
-[ext_resource type="AudioStream" uid="uid://b2sj7ixnlxm4i" path="res://Gfx/balloon_bop.ogg" id="5_4irfp"]
-[ext_resource type="AudioStream" uid="uid://bn3ucbyd87xod" path="res://Gfx/inflating.ogg" id="6_mt22n"]
+[ext_resource type="AudioStream" uid="uid://bd5bl1cu28xw5" path="res://Sfx/sine440_1000ms.ogg" id="2_c5d5v"]
+[ext_resource type="AudioStream" uid="uid://ffhcm52oejub" path="res://Sfx/01 [Menu] Inflate to Float.mp3" id="3_4irfp"]
+[ext_resource type="AudioStream" uid="uid://b8ul4fcsewnkr" path="res://Sfx/04 [Game Start] Start to Soar.mp3" id="3_mt22n"]
+[ext_resource type="AudioStream" uid="uid://bt7tn2dvkjd4j" path="res://Sfx/balloon_hiss.ogg" id="4_hccw1"]
+[ext_resource type="AudioStream" uid="uid://b2sj7ixnlxm4i" path="res://Sfx/balloon_bop.ogg" id="5_4irfp"]
 
 [node name="Beeper" type="Node"]
 script = ExtResource("1_idpjf")
@@ -15,7 +15,7 @@ stream = ExtResource("2_c5d5v")
 pitch_scale = 1.8
 
 [node name="bgm" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_7noch")
+stream = ExtResource("3_mt22n")
 volume_db = -20.0
 parameters/looping = true
 
@@ -33,7 +33,7 @@ pitch_scale = 3.3
 max_polyphony = 2
 
 [node name="mbgm" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_mt22n")
+stream = ExtResource("3_4irfp")
 volume_db = -20.0
 pitch_scale = 0.8
 parameters/looping = true
