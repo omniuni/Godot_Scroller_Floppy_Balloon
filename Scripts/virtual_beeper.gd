@@ -78,9 +78,3 @@ func bop_play():
 		return
 	bop.play()
 	pass
-
-func play_ui():
-	if not GameSettings.Audio_SFX_Enabled:
-		return
-	AudioBeeper.beep_background(900.0, 0.25)
-	pass

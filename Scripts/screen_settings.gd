@@ -54,14 +54,14 @@ func _on_audio_check_toggled(toggled_on: bool) -> void:
 	GameSettings.Audio_Enabled = toggled_on
 	update_audio_toggle()
 	if ui_setup_complete:
-		Beeper.play_ui()
+		AudioManager.beep_ui()
 	pass
 
 func _on_audio_sfx_check_toggled(toggled_on: bool) -> void:
 	GameSettings.Audio_SFX_Enabled = toggled_on
 	update_audio_sfx_toggle()
 	if ui_setup_complete:
-		Beeper.play_ui()
+		AudioManager.beep_ui()
 	pass # Replace with function body.
 
 func _on_item_color_list_p_1_on_color_selected(color: Color) -> void:
@@ -69,7 +69,7 @@ func _on_item_color_list_p_1_on_color_selected(color: Color) -> void:
 	colorSquareP1.Swatch_Color = color
 	GameSettings.Color_P1 = color
 	if ui_setup_complete:
-		Beeper.play_ui()
+		AudioManager.beep_ui()
 	pass
 
 func _on_display_options_item_selected(index: int) -> void:
@@ -77,12 +77,12 @@ func _on_display_options_item_selected(index: int) -> void:
 	var value_string: String = options_display.get_item_text(index).to_lower()
 	GameSettings.Display_Fullscreen = value_string.contains("full")
 	if ui_setup_complete:
-		Beeper.play_ui()
+		AudioManager.beep_ui()
 	GameSettings.apply_display()
 	pass
 
 func _on_button_kb_configure_pressed() -> void:
-	Beeper.play_ui()
+	AudioManager.beep_ui()
 	Scenes.change_to(get_tree(), Scenes.bindings)
 	pass
 
