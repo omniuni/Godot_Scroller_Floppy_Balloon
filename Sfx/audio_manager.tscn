@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c06dc87dlkkuh"]
+
+[ext_resource type="Script" uid="uid://1saspd2dlqwn" path="res://Sfx/audio_manager.gd" id="1_qojxw"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_qojxw"]
+mix_rate = 11025.0
+buffer_length = 0.1
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_qojxw")
+
+[node name="beep_ui" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamGenerator_qojxw")

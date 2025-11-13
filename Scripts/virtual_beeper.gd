@@ -7,9 +7,6 @@ extends Node
 ## that changes the scene can still emit UI sounds.
 
 @onready
-var beep: AudioStreamPlayer = $beep
-
-@onready
 var bgm: AudioStreamPlayer = $bgm
 
 @onready
@@ -82,19 +79,8 @@ func bop_play():
 	bop.play()
 	pass
 
-func play(time: float = 0.1, pitch: float = 1.0):
-	if not GameSettings.Audio_SFX_Enabled:
-		return
-	if beep.playing:
-		beep.stop()
-	if time > 1.0:
-		time = 1.0
-	beep.pitch_scale = pitch
-	beep.play(1.0-time)
-	pass
-
 func play_ui():
 	if not GameSettings.Audio_SFX_Enabled:
 		return
-	play(0.1, 1.8)
+	AudioBeeper.beep_background(900.0, 0.25)
 	pass

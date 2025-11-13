@@ -22,6 +22,8 @@ config/icon="uid://63fgwhx35ciu"
 Scenes="*res://Scripts/scenes.gd"
 Beeper="*res://Scenes/virtual_beeper.tscn"
 GameSettings="*res://Scripts/game_settings.gd"
+AudioManager="*res://Sfx/audio_manager.tscn"
+AudioBeeper="*res://Sfx/audio_beeper.tscn"
 
 [display]
 
