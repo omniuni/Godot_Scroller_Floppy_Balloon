@@ -40,7 +40,7 @@ func _notification(notification_int: int) -> void:
 	pass
 
 func _on_bar_top_on_secondary_action() -> void:
-	menu_bar.Action_Two = ""
+	balloon.freeze(false)
 	pass
 
 func _on_item_balloon_balloon_life(life: float) -> void:

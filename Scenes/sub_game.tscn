@@ -36,6 +36,18 @@ sources/0 = SubResource("TileSetAtlasSource_q8ab6")
 
 [node name="SubGame" type="SubViewportContainer"]
 script = ExtResource("1_v5fik")
+tile_type_rock = null
+tile_type_ground = null
+tile_type_cave = null
+tile_type_cave_crack = null
+tile_type_cave_rock = null
+tile_type_safe = null
+tile_type_heal = null
+tile_type_sg_sm = null
+tile_type_sc_sm = null
+tile_type_sg_lgb = null
+tile_type_sg_lgt = null
+platform_start = null
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false

@@ -1,13 +1,8 @@
 extends SubViewportContainer
 
-@onready
-var tile_map_cave_walls: TileMapLayerLimits = $SubViewport/TileMapGroup/CaveWalls
-
-@onready
-var timerTerrain: Timer = $TimerGenerateTerrain
-
-@onready
-var game_camera: Camera2D = $SubViewport.get_camera_2d()
+@onready var tile_map_cave_walls: TileMapLayerLimits = $SubViewport/TileMapGroup/CaveWalls
+@onready var timerTerrain: Timer = $TimerGenerateTerrain
+@onready var game_camera: Camera2D = $SubViewport.get_camera_2d()
 
 var generator = RandomNumberGenerator.new()
 
@@ -20,6 +15,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	pass
+	
 
 func _on_timer_timeout() -> void:
 	floor_and_ceiling()

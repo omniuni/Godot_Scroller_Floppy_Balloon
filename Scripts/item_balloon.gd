@@ -74,6 +74,10 @@ func do_bump(event: InputEvent):
 func do_bop(event: InputEvent):
 	
 	pass
+	
+func freeze(freeze: bool) -> void:
+	balloon_body.freeze = freeze
+	pass
 
 func _on_debouncer_timeout() -> void:
 	if bump_debounce > 0:
