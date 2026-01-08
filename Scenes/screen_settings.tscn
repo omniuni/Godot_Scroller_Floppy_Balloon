@@ -33,7 +33,7 @@ grow_horizontal = 2
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 20
+theme_override_constants/v_separation = 14
 columns = 2
 
 [node name="DisplayLabel" type="Label" parent="CenterContainer/GridContainer"]
@@ -67,7 +67,7 @@ layout_mode = 2
 text = "Enabled?"
 flat = true
 
-[node name="GameLengthLabel" type="Label" parent="CenterContainer/GridContainer"]
+[node name="SeedLabel" type="Label" parent="CenterContainer/GridContainer"]
 layout_mode = 2
 text = "Level Seed"
 
@@ -76,6 +76,21 @@ layout_mode = 2
 text = "0"
 emoji_menu_enabled = false
 clear_button_enabled = true
+
+[node name="DifficultyLabel" type="Label" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Display"
+
+[node name="DifficultyOptions" type="OptionButton" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+selected = 1
+item_count = 3
+popup/item_0/text = "Gentle"
+popup/item_0/id = 0
+popup/item_1/text = "Normal"
+popup/item_1/id = 1
+popup/item_2/text = "Challenge"
+popup/item_2/id = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/GridContainer"]
 layout_mode = 2
