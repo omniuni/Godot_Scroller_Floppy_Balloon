@@ -5,6 +5,7 @@ extends Control
 var ui_setup_complete = false
 
 func _ready():
+	AudioManager.play_track("settings")
 	ui_setup_complete = false
 	GameSettings._Enable_Saving = false
 	update_display()
@@ -32,6 +33,10 @@ func update_display():
 func update_audio_toggle():
 	var buttonEnableAudio: CheckButton = $CenterContainer/GridContainer/AudioCheck
 	buttonEnableAudio.button_pressed = GameSettings.Audio_Enabled
+	if not GameSettings.Audio_Enabled:
+		AudioManager.play_track()
+	else:
+		AudioManager.play_track("settings")
 	pass
 	
 func update_audio_sfx_toggle():

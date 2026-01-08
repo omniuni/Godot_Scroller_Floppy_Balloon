@@ -5,7 +5,7 @@ func _ready() -> void:
 	# No way to "Exit" on the web.
 	var button_exit: Button = $MarginContainer/VBoxContainer/VBoxOptions/ButtonExit
 	button_exit.visible = OS.get_name() != "Web"
-	Beeper.mbgm_start()
+	AudioManager.play_track("menu")
 	pass
 
 func _on_button_notes_pressed() -> void:

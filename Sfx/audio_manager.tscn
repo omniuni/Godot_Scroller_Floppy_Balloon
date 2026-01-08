@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c06dc87dlkkuh"]
+[gd_scene load_steps=5 format=3 uid="uid://c06dc87dlkkuh"]
 
 [ext_resource type="Script" uid="uid://1saspd2dlqwn" path="res://Sfx/audio_manager.gd" id="1_qojxw"]
+[ext_resource type="AudioStream" uid="uid://ffhcm52oejub" path="res://Sfx/01 [Menu] Inflate to Float.mp3" id="2_lpdb8"]
+[ext_resource type="AudioStream" uid="uid://bhbqvqwafqbx7" path="res://Sfx/02 [Settings] How to Fly.mp3" id="3_6efxj"]
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_qojxw"]
 mix_rate = 11025.0
@@ -8,6 +10,12 @@ buffer_length = 0.1
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_qojxw")
+tracks = Dictionary[String, Resource]({
+"menu": ExtResource("2_lpdb8"),
+"settings": ExtResource("3_6efxj")
+})
 
 [node name="beep_ui" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamGenerator_qojxw")
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
