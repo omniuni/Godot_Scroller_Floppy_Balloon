@@ -146,22 +146,6 @@ ui_text_dedent={
 "deadzone": 0.5,
 "events": []
 }
-ui_text_backspace={
-"deadzone": 0.5,
-"events": []
-}
-ui_text_backspace_word={
-"deadzone": 0.5,
-"events": []
-}
-ui_text_backspace_word.macos={
-"deadzone": 0.5,
-"events": []
-}
-ui_text_backspace_all_to_left.macos={
-"deadzone": 0.5,
-"events": []
-}
 ui_text_delete={
 "deadzone": 0.5,
 "events": []
@@ -175,30 +159,6 @@ ui_text_delete_word.macos={
 "events": []
 }
 ui_text_delete_all_to_right.macos={
-"deadzone": 0.5,
-"events": []
-}
-ui_text_caret_left={
-"deadzone": 0.5,
-"events": []
-}
-ui_text_caret_word_left={
-"deadzone": 0.5,
-"events": []
-}
-ui_text_caret_word_left.macos={
-"deadzone": 0.5,
-"events": []
-}
-ui_text_caret_right={
-"deadzone": 0.5,
-"events": []
-}
-ui_text_caret_word_right={
-"deadzone": 0.5,
-"events": []
-}
-ui_text_caret_word_right.macos={
 "deadzone": 0.5,
 "events": []
 }
