@@ -14,6 +14,7 @@ func _ready():
 	update_ui_touch_toggle()
 	update_player_colors()
 	update_seed()
+	update_difficulty()
 	ui_setup_complete = true
 	GameSettings._Enable_Saving = true
 	pass
@@ -28,6 +29,11 @@ func update_display():
 		for item_index: int in options_display.item_count:
 			var item_text: String = options_display.get_item_text(item_index)
 			if item_text.to_lower().contains("window"): options_display.select(item_index)
+	pass
+	
+func update_difficulty() -> void:
+	var difficulty_options: OptionButton = $CenterContainer/GridContainer/DifficultyOptions
+	difficulty_options.select(GameSettings.Difficulty)
 	pass
 
 func update_audio_toggle():
@@ -97,6 +103,10 @@ func _on_display_options_item_selected(index: int) -> void:
 	if ui_setup_complete:
 		AudioManager.beep_ui()
 	GameSettings.apply_display()
+	pass
+	
+func _on_difficulty_options_item_selected(index: int) -> void:
+	GameSettings.Difficulty = index
 	pass
 
 func _on_button_kb_configure_pressed() -> void:

@@ -132,6 +132,7 @@ text = "Configure"
 [connection signal="toggled" from="CenterContainer/GridContainer/AudioCheck" to="." method="_on_audio_check_toggled"]
 [connection signal="toggled" from="CenterContainer/GridContainer/AudioSFXCheck" to="." method="_on_audio_sfx_check_toggled"]
 [connection signal="text_changed" from="CenterContainer/GridContainer/LineEditSeed" to="." method="_on_line_edit_seed_text_changed"]
+[connection signal="item_selected" from="CenterContainer/GridContainer/DifficultyOptions" to="." method="_on_difficulty_options_item_selected"]
 [connection signal="On_Color_Selected" from="CenterContainer/GridContainer/ItemColorListP1" to="." method="_on_item_color_list_p_1_on_color_selected"]
 [connection signal="toggled" from="CenterContainer/GridContainer/TouchCheck" to="." method="_on_touch_check_toggled"]
 [connection signal="pressed" from="CenterContainer/GridContainer/ButtonKBConfigure" to="." method="_on_button_kb_configure_pressed"]

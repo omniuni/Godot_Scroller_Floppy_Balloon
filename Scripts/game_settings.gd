@@ -36,6 +36,12 @@ var Seed: int = 0:
 		_save()
 		pass
 		
+var Difficulty: int = 1:
+	set(value):
+		Difficulty = value
+		_save()
+		pass
+		
 var Custom_Key_Bindings: Dictionary = {}:
 	set(value):
 		Custom_Key_Bindings = value
