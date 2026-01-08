@@ -12,8 +12,7 @@ func _ready() -> void:
 	timerTerrain.start()
 	pass
 
-func _process(delta: float) -> void:
-	
+func _process(_delta: float) -> void:
 	pass
 	
 
@@ -54,7 +53,7 @@ func floor_and_ceiling():
 			print("Rendering new Column: "+str(i))
 			
 			if(centerpoint == -1):
-				centerpoint = generator.randi_range(tile_row_ceiling, tile_row_floor)
+				centerpoint = floor( (tile_row_ceiling+tile_row_floor)/2.0 )
 			elif i > platform_start:
 				centerpoint+=generator.randi_range(-1, 1)
 			if(centerpoint-width_half-1 < tile_row_ceiling): centerpoint = tile_row_ceiling+width_half+1
