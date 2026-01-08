@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c06dc87dlkkuh"]
+[gd_scene load_steps=10 format=3 uid="uid://c06dc87dlkkuh"]
 
 [ext_resource type="Script" uid="uid://1saspd2dlqwn" path="res://Sfx/audio_manager.gd" id="1_qojxw"]
 [ext_resource type="AudioStream" uid="uid://ffhcm52oejub" path="res://Sfx/01 [Menu] Inflate to Float.mp3" id="2_lpdb8"]
 [ext_resource type="AudioStream" uid="uid://bhbqvqwafqbx7" path="res://Sfx/02 [Settings] How to Fly.mp3" id="3_6efxj"]
+[ext_resource type="AudioStream" uid="uid://cgf2i5iqvy33b" path="res://Sfx/03 [About] Drifting Memories.mp3" id="4_aepe6"]
+[ext_resource type="AudioStream" uid="uid://b8ul4fcsewnkr" path="res://Sfx/04 [Game Start] Start to Soar.mp3" id="5_0rg66"]
+[ext_resource type="AudioStream" uid="uid://do8c4qk1w18xb" path="res://Sfx/05 [Game Climax] Mach Rubber.mp3" id="6_fie12"]
+[ext_resource type="AudioStream" uid="uid://dctwp8mjo4frf" path="res://Sfx/06 [Pause] Hover Now Again.mp3" id="7_6b1qr"]
+[ext_resource type="AudioStream" uid="uid://b53tfruekooms" path="res://Sfx/07 [Game Over] Downdraft Done.mp3" id="8_2kmm4"]
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_qojxw"]
 mix_rate = 11025.0
@@ -11,6 +16,11 @@ buffer_length = 0.1
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_qojxw")
 tracks = Dictionary[String, Resource]({
+"about": ExtResource("4_aepe6"),
+"game_climax": ExtResource("6_fie12"),
+"game_over": ExtResource("8_2kmm4"),
+"game_pause": ExtResource("7_6b1qr"),
+"game_start": ExtResource("5_0rg66"),
 "menu": ExtResource("2_lpdb8"),
 "settings": ExtResource("3_6efxj")
 })
