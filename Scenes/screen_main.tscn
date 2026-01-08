@@ -166,6 +166,27 @@ offset_top = 70.0
 offset_right = 600.0
 offset_bottom = 90.0
 
+[node name="UiTouchControls" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 40
+
+[node name="ButtonBump" type="Button" parent="UiTouchControls"]
+modulate = Color(1, 1, 1, 0.39215687)
+custom_minimum_size = Vector2(200, 90)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.7411765)
+theme_override_constants/outline_size = 2
+text = "Bump"
+
 [connection signal="body_entered" from="RigidBodyCeiling" to="." method="_on_rigid_body_ceiling_body_entered"]
 [connection signal="body_entered" from="RigidBodyFloor" to="." method="_on_rigid_body_floor_body_entered"]
 [connection signal="On_Secondary_Action" from="BarTop" to="." method="_on_bar_top_on_secondary_action"]
@@ -174,5 +195,6 @@ offset_bottom = 90.0
 [connection signal="pressed" from="WinPanel/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonDone" to="." method="_on_button_done_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="balloon_life" from="SubGame/SubViewport/ItemBalloon" to="." method="_on_item_balloon_balloon_life"]
+[connection signal="pressed" from="UiTouchControls/ButtonBump" to="." method="_on_button_bump_pressed"]
 
 [editable path="SubGame"]

@@ -9,6 +9,7 @@ extends Control
 @onready var ui_win_label: Label = $WinPanel/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LabelWinner
 @onready var ui_count_panel: Panel = $CountPanel
 @onready var ui_count_panel_label: Label = $CountPanel/Label
+@onready var ui_touch_controls: MarginContainer = $UiTouchControls
 
 @onready var ui_life_progress: ProgressBar = $ProgressBar
 @onready var balloon = $SubGame/SubViewport/ItemBalloon
@@ -19,6 +20,8 @@ func _ready():
 	GameSettings.apply_custom_key_bindings()
 	init_ui()
 	balloon.request_life()
+	if not GameSettings.UI_Touch_Enabled:
+		ui_touch_controls.hide()
 	pass
 	
 func _input(event: InputEvent) -> void:
@@ -43,4 +46,12 @@ func _on_bar_top_on_secondary_action() -> void:
 func _on_item_balloon_balloon_life(life: float) -> void:
 	if ui_life_progress is Node:
 		ui_life_progress.value = life
+	pass
+
+
+func _on_button_bump_pressed() -> void:
+	var event = InputEventAction.new()
+	event.action = "Bump"
+	event.pressed = true
+	Input.parse_input_event(event)
 	pass

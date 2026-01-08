@@ -33,7 +33,7 @@ grow_horizontal = 2
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 23
+theme_override_constants/v_separation = 20
 columns = 2
 
 [node name="DisplayLabel" type="Label" parent="CenterContainer/GridContainer"]
@@ -96,6 +96,15 @@ layout_mode = 2
 Swatch_Colors = Array[Color]([Color(0, 0, 0, 1), Color(0.5, 0.5, 0.5, 1), Color(1, 1, 1, 1), Color(0, 0, 1, 1), Color(0, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 1, 1)])
 Selected_Color = Color(0.501961, 0.501961, 0.501961, 1)
 
+[node name="LabelTouch" type="Label" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Touch Controls"
+
+[node name="TouchCheck" type="CheckButton" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Enabled?"
+flat = true
+
 [node name="Label" type="Label" parent="CenterContainer/GridContainer"]
 layout_mode = 2
 text = "Key Bindings"
@@ -109,4 +118,5 @@ text = "Configure"
 [connection signal="toggled" from="CenterContainer/GridContainer/AudioSFXCheck" to="." method="_on_audio_sfx_check_toggled"]
 [connection signal="text_changed" from="CenterContainer/GridContainer/LineEditSeed" to="." method="_on_line_edit_seed_text_changed"]
 [connection signal="On_Color_Selected" from="CenterContainer/GridContainer/ItemColorListP1" to="." method="_on_item_color_list_p_1_on_color_selected"]
+[connection signal="toggled" from="CenterContainer/GridContainer/TouchCheck" to="." method="_on_touch_check_toggled"]
 [connection signal="pressed" from="CenterContainer/GridContainer/ButtonKBConfigure" to="." method="_on_button_kb_configure_pressed"]

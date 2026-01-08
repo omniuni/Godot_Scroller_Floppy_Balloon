@@ -10,6 +10,7 @@ func _ready():
 	update_display()
 	update_audio_toggle()
 	update_audio_sfx_toggle()
+	update_ui_touch_toggle()
 	update_player_colors()
 	update_seed()
 	ui_setup_complete = true
@@ -38,6 +39,11 @@ func update_audio_sfx_toggle():
 	buttonEnableSFXAudio.button_pressed = GameSettings.Audio_SFX_Enabled
 	pass
 	
+func update_ui_touch_toggle():
+	var buttonUiTouch: CheckButton = $CenterContainer/GridContainer/TouchCheck
+	buttonUiTouch.button_pressed = GameSettings.UI_Touch_Enabled
+	pass
+	
 func update_player_colors():
 	var colorListP1: UiColorList = $CenterContainer/GridContainer/ItemColorListP1
 	var colorSquareP1: UiColorSquare = $CenterContainer/GridContainer/HBoxContainer/ColorSquareP1
@@ -62,7 +68,14 @@ func _on_audio_sfx_check_toggled(toggled_on: bool) -> void:
 	update_audio_sfx_toggle()
 	if ui_setup_complete:
 		AudioManager.beep_ui()
-	pass # Replace with function body.
+	pass
+
+func _on_touch_check_toggled(toggled_on: bool) -> void:
+	GameSettings.UI_Touch_Enabled = toggled_on
+	update_ui_touch_toggle()
+	if ui_setup_complete:
+		AudioManager.beep_ui()
+	pass
 
 func _on_item_color_list_p_1_on_color_selected(color: Color) -> void:
 	var colorSquareP1: UiColorSquare = $CenterContainer/GridContainer/HBoxContainer/ColorSquareP1

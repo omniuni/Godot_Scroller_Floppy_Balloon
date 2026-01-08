@@ -17,6 +17,12 @@ var Audio_SFX_Enabled: bool = true:
 		Audio_SFX_Enabled = value
 		_save()
 		pass
+		
+var UI_Touch_Enabled: bool = false:
+	set(value):
+		UI_Touch_Enabled = value
+		_save()
+		pass
 
 var Color_P1: Color = Color(0,0,0):
 	set(value):
