@@ -79,7 +79,7 @@ clear_button_enabled = true
 
 [node name="DifficultyLabel" type="Label" parent="CenterContainer/GridContainer"]
 layout_mode = 2
-text = "Display"
+text = "Difficulty"
 
 [node name="DifficultyOptions" type="OptionButton" parent="CenterContainer/GridContainer"]
 layout_mode = 2
