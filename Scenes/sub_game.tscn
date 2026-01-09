@@ -64,7 +64,7 @@ script = ExtResource("3_v5fik")
 metadata/_custom_type_script = "uid://c8hnjq2wfk3np"
 
 [node name="ItemBalloon" parent="SubViewport" instance=ExtResource("3_ewyn5")]
-position = Vector2(128, 128)
+position = Vector2(120, 150)
 
 [node name="TimerGenerateTerrain" type="Timer" parent="."]
 wait_time = 0.25

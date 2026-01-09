@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://cemvtl3so226j"]
+
+[ext_resource type="Script" uid="uid://dxl6xicn7pnfk" path="res://Scripts/ui_pause.gd" id="1_kv54d"]
+[ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="2_knb8j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opamx"]
+bg_color = Color(0, 0, 0, 0.784314)
+
+[node name="UiPause" type="MarginContainer"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1_kv54d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 0.1254902)
+
+[node name="PausePanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(180, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_opamx")
+
+[node name="Label" type="Label" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_knb8j")
+theme_override_font_sizes/font_size = 24
+text = "Pause"
+horizontal_alignment = 1
+vertical_alignment = 1

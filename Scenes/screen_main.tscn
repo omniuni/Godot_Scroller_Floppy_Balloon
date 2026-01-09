@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ds0jps4mqwatn"]
+[gd_scene load_steps=9 format=3 uid="uid://ds0jps4mqwatn"]
 
 [ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/ui_bar_top.tscn" id="1_56hru"]
 [ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_al584"]
 [ext_resource type="Script" uid="uid://dgeyldqo75nkn" path="res://Scripts/screen_main.gd" id="1_c6q44"]
+[ext_resource type="PackedScene" uid="uid://cemvtl3so226j" path="res://Scenes/ui_pause.tscn" id="5_i8enm"]
 [ext_resource type="PackedScene" uid="uid://cq1o5hcqif62l" path="res://Scenes/sub_game.tscn" id="6_rhby6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yd3c8"]
@@ -72,6 +73,44 @@ max_contacts_reported = 1
 position = Vector2(690, 225)
 shape = SubResource("RectangleShape2D_tonuu")
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="SubGame" parent="." instance=ExtResource("6_rhby6")]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 640.0
+offset_bottom = 400.0
+platform_start = 8
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 70.0
+offset_right = 600.0
+offset_bottom = 90.0
+
+[node name="UiTouchControls" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="ButtonBump" type="Button" parent="UiTouchControls"]
+modulate = Color(1, 1, 1, 0.39215687)
+custom_minimum_size = Vector2(120, 90)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.7411765)
+theme_override_constants/outline_size = 2
+text = "Bump"
+
 [node name="WinPanel" type="Panel" parent="."]
 visible = false
 layout_mode = 1
@@ -129,10 +168,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -60.0
+offset_top = -50.0
+offset_right = 60.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yd3c8")
@@ -149,52 +188,34 @@ text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
-[node name="SubGame" parent="." instance=ExtResource("6_rhby6")]
+[node name="TimeLabel" type="Label" parent="."]
+visible = false
 layout_mode = 0
-offset_top = 50.0
-offset_right = 640.0
-offset_bottom = 400.0
-platform_start = 8
+offset_left = 240.0
+offset_top = 10.0
+offset_right = 370.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 8
+text = "00:00.00"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-layout_mode = 0
-offset_left = 500.0
-offset_top = 70.0
-offset_right = 600.0
-offset_bottom = 90.0
-
-[node name="UiTouchControls" type="MarginContainer" parent="."]
+[node name="UiPause" parent="." instance=ExtResource("5_i8enm")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
 
-[node name="ButtonBump" type="Button" parent="UiTouchControls"]
-modulate = Color(1, 1, 1, 0.39215687)
-custom_minimum_size = Vector2(120, 90)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.7411765)
-theme_override_constants/outline_size = 2
-text = "Bump"
+[node name="UiUpdateTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
 
 [connection signal="body_entered" from="RigidBodyCeiling" to="." method="_on_rigid_body_ceiling_body_entered"]
 [connection signal="body_entered" from="RigidBodyFloor" to="." method="_on_rigid_body_floor_body_entered"]
 [connection signal="On_Secondary_Action" from="BarTop" to="." method="_on_bar_top_on_secondary_action"]
 [connection signal="body_entered" from="RigidBodyGoalLeft" to="." method="_on_rigid_body_goal_left_body_entered"]
 [connection signal="body_entered" from="RigidBodyGoalRight" to="." method="_on_rigid_body_goal_right_body_entered"]
-[connection signal="pressed" from="WinPanel/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonDone" to="." method="_on_button_done_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="balloon_life" from="SubGame/SubViewport/ItemBalloon" to="." method="_on_item_balloon_balloon_life"]
 [connection signal="pressed" from="UiTouchControls/ButtonBump" to="." method="_on_button_bump_pressed"]
+[connection signal="pressed" from="WinPanel/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonDone" to="." method="_on_button_done_pressed"]
+[connection signal="timeout" from="UiUpdateTimer" to="." method="_on_ui_update_timer_timeout"]
 
 [editable path="SubGame"]

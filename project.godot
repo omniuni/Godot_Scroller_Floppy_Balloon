@@ -50,10 +50,6 @@ ui_select={
 "deadzone": 0.5,
 "events": []
 }
-ui_cancel={
-"deadzone": 0.5,
-"events": []
-}
 ui_focus_next={
 "deadzone": 0.5,
 "events": []

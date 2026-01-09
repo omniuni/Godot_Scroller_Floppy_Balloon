@@ -10,11 +10,13 @@ extends Control
 @onready var ui_count_panel: Panel = $CountPanel
 @onready var ui_count_panel_label: Label = $CountPanel/Label
 @onready var ui_touch_controls: MarginContainer = $UiTouchControls
+@onready var ui_level_time: Label = $TimeLabel
 
 @onready var ui_life_progress: ProgressBar = $ProgressBar
 @onready var balloon = $SubGame/SubViewport/ItemBalloon
 
-var add_ball_in: int = 0
+var level_start: bool = false
+var level_time: float = 0
 
 func _ready():
 	GameSettings.apply_custom_key_bindings()
@@ -28,6 +30,8 @@ func _input(event: InputEvent) -> void:
 	var event_name: String = GameSettings.get_action_name(event)
 	if event_name.to_lower().contains("ball"):
 		_on_bar_top_on_secondary_action()
+	#if event.is_action_pressed("ui_cancel"):
+		#level_pause = not level_pause
 	pass
 	
 func init_ui() -> void:
@@ -40,7 +44,9 @@ func _notification(notification_int: int) -> void:
 	pass
 
 func _on_bar_top_on_secondary_action() -> void:
-	balloon.freeze(false)
+	menu_bar.Action_Two = ""
+	level_start = true
+	level_time = -3.0
 	pass
 
 func _on_item_balloon_balloon_life(life: float) -> void:
@@ -54,4 +60,21 @@ func _on_button_bump_pressed() -> void:
 	event.action = "Bump"
 	event.pressed = true
 	Input.parse_input_event(event)
+	pass
+
+func _on_ui_update_timer_timeout() -> void:
+	if level_start == true and level_time >= 0:
+		balloon.freeze(false)
+	if level_start == true and level_time <= 0:
+		ui_count_panel.visible = true
+		ui_count_panel_label.text = str(ceili(abs(level_time)))
+	if level_start == true and level_time >= 0 and ui_count_panel.visible:
+		ui_count_panel.visible = false
+		AudioManager.beep_ui()
+		ui_level_time.visible = true
+	if level_time >= 0:
+		var minutes := int(level_time / 60)
+		var seconds := fmod(level_time, 60.0)
+		ui_level_time.text = "%02d:%05.2f" % [minutes, seconds]
+	level_time += 0.1
 	pass
