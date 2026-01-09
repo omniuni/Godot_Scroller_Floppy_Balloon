@@ -67,7 +67,7 @@ func do_bump(event: InputEvent):
 		bump_debounce=Debounce_Rough_Msec*Debounce_Msec_Multiplier
 	if event.is_echo() and bump_debounce == 0:
 		print("Little Bump!")
-		balloon_body.apply_central_impulse(Vector2i(Bump_Horizontal*scale_down,-1*Bump_Vertical*Hit_Ratio))
+		balloon_body.apply_central_impulse(Vector2(Bump_Horizontal*scale_down,-1*Bump_Vertical*Hit_Ratio))
 		bump_debounce=Debounce_Rough_Msec*generator.randi_range(1,Debounce_Msec_Multiplier)
 	pass
 	
