@@ -45,6 +45,13 @@ func _ready() -> void:
 	generator.seed = GameSettings.Seed
 	balloon_life.emit(snapped(Current_Life/Max_Life, 0.01)*100)
 	pass
+	
+func _physics_process(delta: float) -> void:
+	var orientation = balloon_body.rotation
+	var compensation = ( (orientation/.0007)*-1 )*delta
+	print_debug("Balloon orientation: "+str(orientation)+", compensation: "+str(compensation))
+	balloon_body.apply_torque(compensation)
+	pass
 
 func _input(event: InputEvent) -> void:
 	var event_name: String = GameSettings.get_action_name(event)
@@ -70,13 +77,13 @@ func do_bump(event: InputEvent):
 		balloon_body.apply_central_impulse(Vector2(Bump_Horizontal*scale_down,-1*Bump_Vertical*Hit_Ratio))
 		bump_debounce=Debounce_Rough_Msec*generator.randi_range(1,Debounce_Msec_Multiplier)
 	pass
-	
-func do_bop(event: InputEvent):
-	
+
+# Placeholder for "bop" event
+func do_bop(_event: InputEvent):
 	pass
 	
-func freeze(freeze: bool) -> void:
-	balloon_body.freeze = freeze
+func freeze(frozen: bool) -> void:
+	balloon_body.freeze = frozen
 	pass
 
 func _on_debouncer_timeout() -> void:
@@ -109,7 +116,7 @@ var air: Resource = preload("res://Scenes/item_air_escape.tscn")
 var airs: Array[ItemAirEscape]
 var is_deflating: bool = false
 
-func _on_rigid_body_balloon_body_entered(body: Node) -> void:
+func _on_rigid_body_balloon_body_entered(_body: Node) -> void:
 	var state: PhysicsDirectBodyState2D = balloon_body.get_last_known_physics_state()
 	var active_collisions: int = state.get_contact_count()
 	print("Body entered, active collisions: "+str(active_collisions))
@@ -145,7 +152,7 @@ func request_life():
 	balloon_life.emit(snapped(Current_Life/Max_Life, 0.01)*100)
 	pass
 
-func _on_rigid_body_balloon_body_exited(body: Node) -> void:
+func _on_rigid_body_balloon_body_exited(_body: Node) -> void:
 	print("body exited")
 	for item: ItemAirEscape in airs:
 		item.emitter.emitting = false
