@@ -1,0 +1,40 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://d27pfgtp83uo"]
+
+[ext_resource type="Texture2D" uid="uid://dhjdwg5shcwt0" path="res://Gfx/TileCave.png" id="1_0ma2h"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q8ab6"]
+texture = ExtResource("1_0ma2h")
+texture_region_size = Vector2i(20, 20)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+4:0/0/custom_data_0 = "safe"
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+5:0/0/custom_data_0 = "heal"
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, 10, 0, -10, 10, 10)
+6:0/0/custom_data_0 = "danger"
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 0, 10)
+7:0/0/custom_data_0 = "danger"
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5, 10, 5, 10, 0, -10)
+8:0/0/custom_data_0 = "danger"
+8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, 10, 10, 10, 5, -10, -5, -10)
+8:1/0/custom_data_0 = "danger"
+3:1/0 = 0
+4:1/0 = 0
+
+[resource]
+tile_size = Vector2i(20, 20)
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_q8ab6")

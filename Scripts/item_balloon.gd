@@ -49,7 +49,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var orientation = balloon_body.rotation
 	var compensation = ( (orientation/.0007)*-1 )*delta
-	print_debug("Balloon orientation: "+str(orientation)+", compensation: "+str(compensation))
 	balloon_body.apply_torque(compensation)
 	pass
 
@@ -116,17 +115,34 @@ var air: Resource = preload("res://Scenes/item_air_escape.tscn")
 var airs: Array[ItemAirEscape]
 var is_deflating: bool = false
 
-func _on_rigid_body_balloon_body_entered(_body: Node) -> void:
+func _on_rigid_body_balloon_body_entered(body: Node) -> void:
 	var state: PhysicsDirectBodyState2D = balloon_body.get_last_known_physics_state()
 	var active_collisions: int = state.get_contact_count()
 	print("Body entered, active collisions: "+str(active_collisions))
 	Beeper.bump_play()
+	
+	
+	
 	for i in range(active_collisions):
 		var local_collision_point = balloon_body.to_local(state.get_contact_local_position(i))
 		print("collided at: "+str(local_collision_point))
+		
+		var tile_type = ""
+		var tile_map_layer: TileMapLayer = null
+		var tile_coords: Vector2i = Vector2i.ZERO
+		var tile = null
+		
+		if body is TileMapLayer:
+			tile_map_layer = body
+			var tile_map_local: Vector2 = tile_map_layer.to_local(state.get_contact_local_position(i))
+			tile_coords = tile_map_layer.local_to_map(tile_map_local)
+			tile = tile_map_layer.get_cell_tile_data(tile_coords)
+			tile_type = tile.get_custom_data("type")
+			print_debug("Tile type: "+tile_type)
+		
 		if airs.size() > i:
 			airs[i].position = local_collision_point
-			if Current_Life > 0:
+			if Current_Life > 0 and tile_type.is_empty():
 				airs[i].emitter.emitting = true
 			else:
 				airs[i].emitter.emitting = false
@@ -139,10 +155,18 @@ func _on_rigid_body_balloon_body_entered(_body: Node) -> void:
 			airs.resize(active_collisions)
 		if active_collisions > 0:
 			if not is_deflating and Current_Life > 0:
-				Current_Life-=5
+				match tile_type:
+					"safe":
+						break
+					"heal":
+						Current_Life+=10
+						var tile_type_ground: Vector2i = Vector2i(1, 0)
+						tile_map_layer.set_cell(tile_coords, 0, tile_type_ground)
+					_:
+						Current_Life-=5
+						is_deflating = true
+						Beeper.hiss_start()
 				balloon_life.emit(snapped(Current_Life/Max_Life, 0.01)*100)
-				is_deflating = true
-				Beeper.hiss_start()
 		else:
 			is_deflating = false
 			Beeper.hiss_stop()

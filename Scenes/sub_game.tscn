@@ -1,38 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://cq1o5hcqif62l"]
+[gd_scene load_steps=5 format=4 uid="uid://cq1o5hcqif62l"]
 
 [ext_resource type="Script" uid="uid://df6ssy33b1ris" path="res://Scripts/sub_game.gd" id="1_v5fik"]
-[ext_resource type="Texture2D" uid="uid://dhjdwg5shcwt0" path="res://Gfx/TileCave.png" id="2_ewyn5"]
+[ext_resource type="TileSet" uid="uid://d27pfgtp83uo" path="res://sub_game.tres" id="2_v5fik"]
 [ext_resource type="PackedScene" uid="uid://plijsrh17yxp" path="res://Scenes/item_balloon.tscn" id="3_ewyn5"]
 [ext_resource type="Script" uid="uid://c8hnjq2wfk3np" path="res://Scripts/Components/TileMapLayerLimits.gd" id="3_v5fik"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q8ab6"]
-texture = ExtResource("2_ewyn5")
-texture_region_size = Vector2i(20, 20)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-5:0/0 = 0
-5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
-6:0/0 = 0
-6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, 10, 0, -10, 10, 10)
-7:0/0 = 0
-7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, -10, 10, -10, 0, 10)
-8:0/0 = 0
-8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5, 10, 5, 10, 0, -10)
-8:1/0 = 0
-8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10, 10, 10, 10, 5, -10, -5, -10)
-3:1/0 = 0
-4:1/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_m176q"]
-tile_size = Vector2i(20, 20)
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_q8ab6")
 
 [node name="SubGame" type="SubViewportContainer"]
 script = ExtResource("1_v5fik")
@@ -59,7 +30,7 @@ render_target_update_mode = 4
 [node name="CaveWalls" type="TileMapLayer" parent="SubViewport/TileMapGroup"]
 position = Vector2(0, -5)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAVAAAAAAAAAAAAAAAWAAAAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAAABEAAAAAAAAAAAABABEAAAAAAAAAAAACABEAAAAAAAAAAAADABEAAAAAAAAAAAAEABEAAAAAAAAAAAAFABEAAAAAAAAAAAAGABEAAAAAAAAAAAAHABEAAAAAAAAAAAAIABEAAAAAAAAAAAAJABEAAAAAAAAAAAAKABEAAAAAAAAAAAALABEAAAAAAAAAAAAMABEAAAAAAAAAAAANABEAAAAAAAAAAAAOABEAAAAAAAAAAAAPABEAAAAAAAAAAAAQABEAAAAAAAAAAAARABEAAAAAAAAAAAASABEAAAAAAAAAAAATABEAAAAAAAAAAAAUABEAAAAAAAAAAAAVABEAAAAAAAAAAAAWABEAAAAAAAAAAAAXABEAAAAAAAAAAAAYABEAAAAAAAAAAAAZABEAAAAAAAAAAAAaABEAAAAAAAAAAAAbABEAAAAAAAAAAAAcABEAAAAAAAAAAAAdABEAAAAAAAAAAAAeABEAAAAAAAAAAAAeAAAAAAAAAAAAAAAdAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAcAP//AAAAAAAAAAAbAP//AAAAAAAAAAAaAP//AAAAAAAAAAAZAP//AAAAAAAAAAAZAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAbAAAAAAAAAAAAAAA=")
-tile_set = SubResource("TileSet_m176q")
+tile_set = ExtResource("2_v5fik")
 script = ExtResource("3_v5fik")
 metadata/_custom_type_script = "uid://c8hnjq2wfk3np"
 
