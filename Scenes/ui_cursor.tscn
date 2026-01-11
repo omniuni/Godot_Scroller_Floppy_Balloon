@@ -4,11 +4,15 @@
 [ext_resource type="Script" uid="uid://dkhu06wqu6wod" path="res://Scripts/ui_cursor.gd" id="2_1k5ha"]
 
 [node name="UiCursor" type="Node2D"]
-z_index = 1000
+process_mode = 3
+z_index = 4096
 z_as_relative = false
 script = ExtResource("2_1k5ha")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10000
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(9, 13)
 scale = Vector2(2, 2)
 texture = ExtResource("1_83pwg")

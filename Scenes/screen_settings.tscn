@@ -83,6 +83,7 @@ text = "Difficulty"
 
 [node name="DifficultyOptions" type="OptionButton" parent="CenterContainer/GridContainer"]
 layout_mode = 2
+mouse_filter = 1
 selected = 1
 item_count = 3
 popup/item_0/text = "Gentle"
