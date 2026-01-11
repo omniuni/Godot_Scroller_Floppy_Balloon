@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://ds0jps4mqwatn"]
+[gd_scene load_steps=13 format=4 uid="uid://ds0jps4mqwatn"]
 
 [ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/ui_bar_top.tscn" id="1_56hru"]
 [ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_al584"]
@@ -13,6 +13,18 @@ size = Vector2(660, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tonuu"]
 size = Vector2(100, 330)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rnon7"]
+bg_color = Color(0, 0, 0, 0.25490198)
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.11, 0.11, 0.11, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2lgk"]
+bg_color = Color(0.6, 0.573, 0.51000005, 0.49411765)
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd3c8"]
 bg_color = Color(0, 0, 0, 0.784314)
@@ -92,6 +104,15 @@ offset_top = 70.0
 offset_right = 600.0
 offset_bottom = 90.0
 
+[node name="ProgressBarLevel" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_top = 46.0
+offset_right = 640.0
+offset_bottom = 50.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rnon7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c2lgk")
+show_percentage = false
+
 [node name="UiTouchControls" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -101,7 +122,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 60
+theme_override_constants/margin_bottom = 50
 
 [node name="ButtonBump" type="Button" parent="UiTouchControls"]
 modulate = Color(1, 1, 1, 0.39215687)
@@ -207,20 +228,20 @@ layout_mode = 1
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 450.0
-offset_top = 350.0
-offset_right = 610.0
+offset_left = 30.0
+offset_top = 330.0
+offset_right = 190.0
 offset_bottom = 390.0
 
 [node name="TileMapLayerLegend" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAdABIAAAAFAAAAAAAcABIAAAAFAAAAAAAbABIAAAAFAAAAAAAZABIAAAAEAAAAAAAYABIAAAAEAAAAAAAXABIAAAAEAAAAAAA=")
+tile_map_data = PackedByteArray("AAACABIAAAAEAAAAAAADABIAAAAEAAAAAAAEABIAAAAEAAAAAAAGABIAAAAFAAAAAAAHABIAAAAFAAAAAAAIABIAAAAFAAAAAAA=")
 tile_set = ExtResource("6_rnon7")
 
 [node name="LabelSafe" type="Label" parent="."]
 layout_mode = 0
-offset_left = 460.0
+offset_left = 40.0
 offset_top = 360.0
-offset_right = 520.0
+offset_right = 100.0
 offset_bottom = 380.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
@@ -231,9 +252,9 @@ vertical_alignment = 1
 
 [node name="LabelHeal" type="Label" parent="."]
 layout_mode = 0
-offset_left = 540.0
+offset_left = 120.0
 offset_top = 360.0
-offset_right = 600.0
+offset_right = 180.0
 offset_bottom = 380.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
@@ -252,16 +273,16 @@ action_name = "Start"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 368.0
-offset_right = 266.0
-offset_bottom = 378.0
+offset_left = 57.0
+offset_top = 342.0
+offset_right = 187.0
+offset_bottom = 352.0
 theme_override_font_sizes/font_size = 8
 text = "Bump The Balloon"
 vertical_alignment = 1
 
 [node name="UiKeycap2" parent="." instance=ExtResource("7_rnon7")]
-position = Vector2(26, 371)
+position = Vector2(43, 346)
 action_name = "Bump"
 
 [connection signal="body_entered" from="RigidBodyCeiling" to="." method="_on_rigid_body_ceiling_body_entered"]
@@ -270,6 +291,7 @@ action_name = "Bump"
 [connection signal="body_entered" from="RigidBodyGoalLeft" to="." method="_on_rigid_body_goal_left_body_entered"]
 [connection signal="body_entered" from="RigidBodyGoalRight" to="." method="_on_rigid_body_goal_right_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="on_column_rendered" from="SubGame" to="." method="_on_sub_game_on_column_rendered"]
 [connection signal="balloon_life" from="SubGame/SubViewport/ItemBalloon" to="." method="_on_item_balloon_balloon_life"]
 [connection signal="pressed" from="UiTouchControls/ButtonBump" to="." method="_on_button_bump_pressed"]
 [connection signal="pressed" from="WinPanel/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonDone" to="." method="_on_button_done_pressed"]

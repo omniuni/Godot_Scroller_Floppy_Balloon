@@ -1,10 +1,13 @@
 extends SubViewportContainer
 
 @onready var tile_map_cave_walls: TileMapLayerLimits = $SubViewport/TileMapGroup/CaveWalls
+@onready var tile_map_cave_overlay: TileMapLayerLimits = $SubViewport/TileMapGroup/CaveOverlay
 @onready var timerTerrain: Timer = $TimerGenerateTerrain
 @onready var game_camera: Camera2D = $SubViewport.get_camera_2d()
 
 var generator = RandomNumberGenerator.new()
+
+signal on_column_rendered(column: int)
 
 func _ready() -> void:
 	generator.seed = GameSettings.Seed
@@ -21,9 +24,10 @@ func _on_timer_timeout() -> void:
 	pass
 	
 var cols_rendered = Array()
+var last_col_rendered: int = 0
 
 var centerpoint = -1
-var width_half = 5
+var width_half = 7
 	
 @export var tile_type_rock: Vector2i = Vector2i(0,0)
 @export var tile_type_ground: Vector2i = Vector2i(1, 0)
@@ -36,6 +40,7 @@ var width_half = 5
 @export var tile_type_sc_sm: Vector2i = Vector2i(7, 0)
 @export var tile_type_sg_lgb: Vector2i = Vector2i(8, 1)
 @export var tile_type_sg_lgt: Vector2i = Vector2i(8, 0)
+@export var tile_type_gem: Vector2i = Vector2i(0, 1)
 @export var platform_start: int = 4
 	
 func floor_and_ceiling():
@@ -51,6 +56,54 @@ func floor_and_ceiling():
 		if(not cols_rendered.has(i)):
 		
 			print("Rendering new Column: "+str(i))
+			var highlight_col: bool = false
+			
+			match GameSettings.Difficulty:
+				0:
+					#This is "Gentle" difficulty
+					if i == 100:
+						width_half -= 1
+						highlight_col = true
+					if i == 400:
+						width_half -= 1
+						highlight_col = true
+					if i == 1400:
+						width_half -= 1
+						highlight_col = true
+					pass
+				1:
+					#This is "Normal" difficulty
+					if i == 10:
+						width_half -= 1
+						highlight_col = true
+					if i == 300:
+						width_half -= 1
+						highlight_col = true
+					if i == 1000:
+						width_half -= 1
+						highlight_col = true
+					if i == 1600:
+						width_half -= 1
+						highlight_col = true
+					pass
+				2:
+					#This is "Challenge" difficulty
+					if i == 10:
+						width_half -= 1
+						highlight_col = true
+					if i == 200:
+						width_half -= 1
+						highlight_col = true
+					if i == 600:
+						width_half -= 1
+						highlight_col = true
+					if i == 1100:
+						width_half -= 1
+						highlight_col = true
+					if i == 1500:
+						width_half -= 1
+						highlight_col = true
+					pass
 			
 			if(centerpoint == -1):
 				centerpoint = floor( (tile_row_ceiling+tile_row_floor)/2.0 )
@@ -73,10 +126,13 @@ func floor_and_ceiling():
 						tile_map_cave_walls.set_cell(tile_target, 0, tile_type_cave_rock)
 					else:
 						tile_map_cave_walls.set_cell(tile_target, 0, tile_type_cave)
+					if highlight_col:
+						tile_map_cave_overlay.set_cell(tile_target, 0, tile_type_gem)
 				else:
 					tile_map_cave_walls.set_cell(tile_target, 0, tile_type_ground)
-					
+				
 			cols_rendered.append(i)
+			last_col_rendered = i
 			
 			# Read some of the previous tiles.
 			# This will be used to update the map with features.
@@ -134,5 +190,6 @@ func floor_and_ceiling():
 				if atlas_ceiling_dn_prev_1 == tile_type_ground and atlas_ceiling_dn_prev_2 == tile_type_cave:
 					tile_map_cave_walls.set_cell(coords_ceiling_dn_prev_1, 0, tile_type_sc_sm)
 				
-	
+			on_column_rendered.emit(last_col_rendered)
+			
 	pass

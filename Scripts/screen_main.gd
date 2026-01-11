@@ -14,6 +14,7 @@ extends Control
 
 @onready var ui_life_progress: ProgressBar = $ProgressBar
 @onready var balloon = $SubGame/SubViewport/ItemBalloon
+@onready var ui_level_progress: ProgressBar = $ProgressBarLevel
 
 var level_start: bool = false
 var level_time: float = 0
@@ -76,4 +77,11 @@ func _on_ui_update_timer_timeout() -> void:
 		var seconds := fmod(level_time, 60.0)
 		ui_level_time.text = "%02d:%05.2f" % [minutes, seconds]
 	level_time += 0.1
+	pass
+
+
+func _on_sub_game_on_column_rendered(column: int) -> void:
+	if ui_level_progress is ProgressBar:
+		var mapped_value = remap(column, 10, 1800, 0, 100)
+		ui_level_progress.value = clamp(mapped_value, 0, 100)
 	pass
