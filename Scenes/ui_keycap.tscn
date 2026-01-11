@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://du62dxybkt4vg"]
+
+[ext_resource type="Script" uid="uid://4mlw7tk5mlu5" path="res://Scripts/ui_keycap.gd" id="1_xdapb"]
+[ext_resource type="Texture2D" uid="uid://can0fpw407fiu" path="res://Gfx/key.png" id="2_cnhr3"]
+[ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="3_g5nnt"]
+
+[node name="UiKeycap" type="Node2D"]
+script = ExtResource("1_xdapb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cnhr3")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+theme = ExtResource("3_g5nnt")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 8
+text = "#"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelSpace" type="Label" parent="."]
+visible = false
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 11.0
+offset_bottom = 10.0
+scale = Vector2(1, 0.8)
+theme = ExtResource("3_g5nnt")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 13
+text = "␣"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -28,10 +28,8 @@ func _ready():
 	
 func _input(event: InputEvent) -> void:
 	var event_name: String = GameSettings.get_action_name(event)
-	if event_name.to_lower().contains("ball"):
-		_on_bar_top_on_secondary_action()
-	#if event.is_action_pressed("ui_cancel"):
-		#level_pause = not level_pause
+	if event_name.to_lower().contains("start"):
+		_on_bar_top_on_secondary_action() 
 	pass
 	
 func init_ui() -> void:
@@ -47,6 +45,7 @@ func _on_bar_top_on_secondary_action() -> void:
 	menu_bar.Action_Two = ""
 	level_start = true
 	level_time = -3.0
+	$UiKeycap.visible = false
 	pass
 
 func _on_item_balloon_balloon_life(life: float) -> void:

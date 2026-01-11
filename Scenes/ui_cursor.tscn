@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbsgkbmcp1pt1"]
+
+[ext_resource type="Texture2D" uid="uid://b10d0bx3n88s5" path="res://Gfx/cursor.png" id="1_83pwg"]
+[ext_resource type="Script" uid="uid://dkhu06wqu6wod" path="res://Scripts/ui_cursor.gd" id="2_1k5ha"]
+
+[node name="UiCursor" type="Node2D"]
+z_index = 1000
+z_as_relative = false
+script = ExtResource("2_1k5ha")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9, 13)
+scale = Vector2(2, 2)
+texture = ExtResource("1_83pwg")

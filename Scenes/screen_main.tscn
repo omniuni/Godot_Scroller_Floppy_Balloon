@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://ds0jps4mqwatn"]
+[gd_scene load_steps=11 format=4 uid="uid://ds0jps4mqwatn"]
 
 [ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/ui_bar_top.tscn" id="1_56hru"]
 [ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_al584"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cemvtl3so226j" path="res://Scenes/ui_pause.tscn" id="5_i8enm"]
 [ext_resource type="PackedScene" uid="uid://cq1o5hcqif62l" path="res://Scenes/sub_game.tscn" id="6_rhby6"]
 [ext_resource type="TileSet" uid="uid://d27pfgtp83uo" path="res://sub_game.tres" id="6_rnon7"]
+[ext_resource type="PackedScene" uid="uid://du62dxybkt4vg" path="res://Scenes/ui_keycap.tscn" id="7_rnon7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yd3c8"]
 size = Vector2(660, 60)
@@ -52,7 +53,7 @@ shape = SubResource("RectangleShape2D_yd3c8")
 [node name="BarTop" parent="." instance=ExtResource("1_56hru")]
 layout_mode = 1
 Title = "Floppy Balloon"
-Action_Two = "Start"
+Action_Two = "  Start"
 
 [node name="RigidBodyGoalLeft" type="RigidBody2D" parent="."]
 freeze = true
@@ -244,6 +245,24 @@ vertical_alignment = 1
 [node name="UiUpdateTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="UiKeycap" parent="." instance=ExtResource("7_rnon7")]
+position = Vector2(365, 25)
+action_name = "Start"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 368.0
+offset_right = 266.0
+offset_bottom = 378.0
+theme_override_font_sizes/font_size = 8
+text = "Bump The Balloon"
+vertical_alignment = 1
+
+[node name="UiKeycap2" parent="." instance=ExtResource("7_rnon7")]
+position = Vector2(26, 371)
+action_name = "Bump"
 
 [connection signal="body_entered" from="RigidBodyCeiling" to="." method="_on_rigid_body_ceiling_body_entered"]
 [connection signal="body_entered" from="RigidBodyFloor" to="." method="_on_rigid_body_floor_body_entered"]

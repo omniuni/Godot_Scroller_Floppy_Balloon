@@ -78,4 +78,9 @@ layout_mode = 2
 Action_to_Rebind = "Bop"
 Action_Name = "Bop"
 
+[node name="UiRebinderStart" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
+layout_mode = 2
+Action_to_Rebind = "Start"
+Action_Name = "Start"
+
 [connection signal="On_Secondary_Action" from="BarTop" to="." method="_on_bar_top_on_secondary_action"]

@@ -16,7 +16,7 @@ func _ready() -> void:
 	print_debug("Audio Generator has been initialized.")
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if _beeper_player.playing:
 		var beeps_array: Array[AudioBeep] = [_beep_bg, _beep_fg]
